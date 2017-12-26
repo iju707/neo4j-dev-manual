@@ -3,7 +3,7 @@
 > 이번 섹션에서는 Cypher 쿼리 언어가 가지는 문법에 대하여 알아보겠습니다.
 
 * [값과 유형](/chapter3/chapter3_2_1.md)
-* Expressions
+* [표현식](/chapter3/chapter3_2_2.md)
   * Expressions in general
   * Note on string literals
   * CASE Expressions

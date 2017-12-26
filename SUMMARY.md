@@ -11,6 +11,7 @@
     * [3.1.4 고유성](chapter3/chapter3_1_4.md)
   * [3.2 문법](chapter3/chapter3_2.md)
     * [3.2.1 값과 유형](chapter3/chapter3_2_1.md)
+    * [3.2.2 표현식](chapter3/chapter3_2_2.md)
 * [5. HTTP API](chapter5.md)
   * [5.1 트랜잭션 Cypher HTTP 종점](chapter5/chapter5_1.md)
 * [B.용어](appendixB.md)
