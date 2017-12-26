@@ -4,7 +4,7 @@
 
 * [값과 유형](/chapter3/chapter3_2_1.md)
 * [표현식](/chapter3/chapter3_2_2.md)
-  * Expressions in general
+  * [Expressions in general](/chapter3/chapter3_2_2.md#chapter3221)
   * Note on string literals
   * CASE Expressions
 * Variables
