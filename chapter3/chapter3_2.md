@@ -2,13 +2,13 @@
 
 > 이번 섹션에서는 Cypher 쿼리 언어가 가지는 문법에 대하여 알아보겠습니다.
 
-* Values and types
-* Expressions
+* [값과 유형](/chapter3/chapter3_2_1.md)
+* Expressions
   * Expressions in general
   * Note on string literals
   * CASE Expressions
 * Variables
-* Parameters
+* Parameters
   * String literal
   * Regular expression
   * Case-sensitive string pattern matching
@@ -21,7 +21,7 @@
   * Calling procedures
   * Index value \(explicit indexes\)
   * Index query \(explicit indexes\)
-* Operators
+* Operators
   * Operators at a glance
   * General operators
   * Mathematical operators
@@ -34,7 +34,7 @@
   * Ordering and comparison of values
   * Chaining comparison operations
 * Comments
-* Patterns
+* Patterns
   * Patterns for nodes
   * Patterns for related nodes
   * Patterns for labels
@@ -46,10 +46,10 @@
   * Lists in general
   * List comprehension
   * Pattern comprehension
-* Maps
+* Maps
   * Literal maps
   * Map projection
-* Working with null
+* Working with null
   * Introduction to null in Cypher
   * Logical operations with null
   * The IN operator and null
