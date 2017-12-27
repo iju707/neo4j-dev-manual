@@ -8,7 +8,7 @@
   * [문자 literal 참고](/chapter3/chapter3_2_2.md#chapter3222)
   * [`CASE` 표현식](/chapter3/chapter3_2_2.md#chapter3223)
 * [변수](/chapter3/chapter3_2_3.md)
-* Parameters
+* [파라미터](/chapter3/chapter3_2_4.md)
   * String literal
   * Regular expression
   * Case-sensitive string pattern matching
@@ -21,7 +21,7 @@
   * Calling procedures
   * Index value \(explicit indexes\)
   * Index query \(explicit indexes\)
-* Operators
+* [연산자](/chapter3/chapter3_2_5.md)
   * Operators at a glance
   * General operators
   * Mathematical operators
@@ -33,7 +33,7 @@
   * Equality and comparison of values
   * Ordering and comparison of values
   * Chaining comparison operations
-* Comments
+* [주석](/chapter3/chapter3_2_6.md)
 * Patterns
   * Patterns for nodes
   * Patterns for related nodes
