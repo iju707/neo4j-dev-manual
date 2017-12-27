@@ -214,43 +214,70 @@ WHERE id(n)= $id
 RETURN n.name
 ```
 
-## 3.2.4.10 다수의 노드 Id 
-Parameters. 
+## 3.2.4.10 다수의 노드 Id {#chapter32410}
 
+### 파라미터
+
+```json
 {
   "ids" : [ 0, 1, 2 ]
 }
-Query. 
+```
 
+### 쿼리 
+
+```cypher
 MATCH (n)
 WHERE id(n) IN $ids
 RETURN n.name
-3.2.4.11. Calling procedures
-Parameters. 
+```
 
+## 3.2.4.11 프로시져 호출 {#chapter32411}
+
+### 파라미터
+
+```json
 {
   "indexname" : ":Person(name)"
 }
-Query. 
+```
 
+### 쿼리
+
+```cypher
 CALL db.resampleIndex($indexname)
-3.2.4.12. Index value (explicit indexes)
-Parameters. 
+```
 
+## 3.2.4.12 인덱스 값 (특정 인덱스 지칭) {#chapter32412}
+
+### 파라미터
+
+```json
 {
   "value" : "Michaela"
 }
-Query. 
+```
 
+### 쿼리
+
+```cypher
 START n=node:people(name = $value)
 RETURN n
-3.2.4.13. Index query (explicit indexes)
-Parameters. 
+```
 
+## 3.2.4.13 인덱스 쿼리 (특정 인덱스 지칭) {#chapter32413}
+
+### 파라미터
+
+```json
 {
   "query" : "name:Andreas"
 }
-Query. 
+```
 
+### 쿼리
+
+```cypher
 START n=node:people($query)
 RETURN n
+```
