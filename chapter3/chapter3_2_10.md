@@ -20,8 +20,34 @@ Cypher에서 `null`은 없거나 정의되지 않은 값을 의미합니다. 개
 | `false` | `false` | `false` | `false` | `false` | `true` |
 | `false` | `null` | `false` | `null` | `null` | `true` |
 | `false` | `true` | `false` | `true` | `true` | `true` |
-
+| `true` | `false` | `false` | `true` | `true` | `false` |
+| `true` | `null` | `null` | `true` | `null` | `false` |
+| `true` | `true` | `true` | `true` | `false` | `false` |
+| `null` | `false` | `false` | `null` | `null` | `null` |
+| `null` | `null` | `null` | `null` | `null` | `null` |
+| `null` | `true` | `null` | `true` | `null` | `null` |
 
 ## `null`과 `IN`연산 {#chapter32103}
 
+`IN` 연산자도 비슷한 로직를 가집니다. Cypher에서 목록에 원하는 값이 존재하는 경우 `true`를 반환합니다. 만약 `null`을 포함하는 목록이고 원하는 결과가 없는 경우 `null`을 반환합니다. `null`이 없는 경우에는 `false`를 반환합니다.
+
+| 표현식 | 결과 |
+| :--- | :--- |
+| 2 IN [1, 2, 3] | `true` |
+| 2 IN [1, `null`, 3] | `null` |
+| 2 IN [1, 2, `null`] | `true` |
+| 2 IN [1] | `false` |
+| 2 IN [] | `false` |
+| `null` IN [1, 2, 3] | `null` |
+| `null` IN [1, `null`, 3] | `null` |
+| `null` IN [] | `false` |
+
+`all`, `any`, `none`, `single` 연산자도 비슷합니다. 결과가 명확하게 계산이 되면 `true`나 `false`를 반환합니다. 그렇지 않으면 `null`이 반환됩니다.
+
 ## `null`을 반환하는 표현식 {#chapter32104}
+
+* 리스트에 항목이 없는 경우 : `[][0]`, `head([])`
+* 노드나 관계에 없는 속성에 접근할 경우 : `n.missingProperty`
+* `null`과의 비교식 : `1 < null`
+* `null`이 포함된 연산식 : `1 + null`
+* `null`을 인수로 사용한 함수호출 : `sin(null)`
