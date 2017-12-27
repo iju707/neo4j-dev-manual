@@ -14,6 +14,7 @@
     * [3.2.2 표현식](chapter3/chapter3_2_2.md)
     * [3.2.3 변수](chapter3/chapter3_2_3.md)
     * [3.2.6 주석](chapter3/chapter3_2_6.md)
+    * [3.2.10 null 사용법](chapter3/chapter3_2_10.md)
 * [5. HTTP API](chapter5.md)
   * [5.1 트랜잭션 Cypher HTTP 종점](chapter5/chapter5_1.md)
 * [B.용어](appendixB.md)
