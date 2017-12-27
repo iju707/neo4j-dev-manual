@@ -4,10 +4,10 @@
 
 * [값과 유형](/chapter3/chapter3_2_1.md)
 * [표현식](/chapter3/chapter3_2_2.md)
-  * [Expressions in general](/chapter3/chapter3_2_2.md#chapter3221)
-  * Note on string literals
-  * CASE Expressions
-* Variables
+  * [일반적인 표현식](/chapter3/chapter3_2_2.md#chapter3221)
+  * [문자 literal 참고](/chapter3/chapter3_2_2.md#chapter3222)
+  * [`CASE` 표현식](/chapter3/chapter3_2_2.md#chapter3223)
+* [변수](/chapter3/chapter3_2_3.md)
 * Parameters
   * String literal
   * Regular expression
