@@ -25,4 +25,6 @@ Cypher에서 가능한 표현식 입니다.
 * 집계 함수 : `avg(x.prop)`, `count(*)`
 * 경로 패턴 : `(a)-->()<--(b)`
 * 연산식 : `1 + 2`, `3 < 4`
-* 
+* 술어 표현 (true 또는 false를 반환하는 표현식) : `a.prop = 'Hello'`, `length(p) > 10`, `exists(a.name)`
+* 정규식 : `a.name =~ 'Tob.*'`
+* 대소문자 구분 
