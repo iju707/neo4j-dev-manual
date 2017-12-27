@@ -1,7 +1,7 @@
 # 3.2.2 표현식
 
 * [일반적인 표현식](#chapter3221)
-* 문자 literal 참고
+* [문자 literal 참고](#chapter3222)
 * `CASE` 표현식
   * 단순 CASE 유형 : 다양한 값을 비교하는 표현식
   * 일반 CASE 유형 : 다수의 조건식을 표현
@@ -17,7 +17,7 @@ Cypher에서 가능한 표현식 입니다.
 * 문자 literal : `'Hello'`, `"World"`
 * Boolean literal : `true`, `false`, `TRUE`, `FALSE`
 * 변수 : `n`, `x`, `rel`, `myFancyVariable`, \`A name with weird stuff in it\[\]!\`
-* 속성 : `n.prop`, `x.prop`, `rel.thisproperty`, myFancyVariable.\`(weird property name)\`
+* 속성 : `n.prop`, `x.prop`, `rel.thisproperty`, myFancyVariable.\`\(weird property name\)\`
 * 동적 변수 : `n["prop"]`, `rel[n.city + n.zip]`, `map[coll[0]]`
 * 파라미터 : `$param`, `$0`
 * 배열 : `['a', 'b']`, `[1, 2, 3]`, `['a', 2, n.property, $param]`, `[ ]`
@@ -25,6 +25,27 @@ Cypher에서 가능한 표현식 입니다.
 * 집계 함수 : `avg(x.prop)`, `count(*)`
 * 경로 패턴 : `(a)-->()<--(b)`
 * 연산식 : `1 + 2`, `3 < 4`
-* 술어 표현 (true 또는 false를 반환하는 표현식) : `a.prop = 'Hello'`, `length(p) > 10`, `exists(a.name)`
+* 술어 표현 \(true 또는 false를 반환하는 표현식\) : `a.prop = 'Hello'`, `length(p) > 10`, `exists(a.name)`
 * 정규식 : `a.name =~ 'Tob.*'`
-* 대소문자 구분 
+* 대소문자 구분 문자열 비교식 : `a.surename START WITH 'Sven'`, `a.surename ENDS WITH 'son'`, `a.surename CONTAINS 'son'`
+* `CASE` 표현식
+
+## 3.2.2.2 문자 literal 참고 {#chapter3222}
+
+문자 literal은 다음과 같은 escape 문자를 포함합니다.
+
+| escape 문자 | 문자내용 |
+| :--- | :--- |
+| `\t` | 탭 |
+| `\b` | Backspace |
+| `\n` | Newline |
+| `\r` | Carriage return |
+| `\f` | Form feed |
+| `\'` | Single quote |
+| `\"` | Double quote |
+| `\\` | Backslash |
+| `\uxxxx` | Unicode UTF-16 code \(`\u` 뒤에 4자리 16진수 포함\) |
+| `\Uxxxxxxxx` | Unicode UTF-32 code \(`\U` 뒤에 8자리 16진수 포함\) |
+
+
+
