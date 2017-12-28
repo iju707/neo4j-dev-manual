@@ -128,7 +128,7 @@ RETURN number ^ exponent AS result
 
 ##### 결과
 
-| 결과 |
+| result |
 | :--- |
 | `8.0` |
 | **1 row** |
@@ -144,7 +144,7 @@ RETURN b - a AS result
 
 ##### 쿼리결과
 
-| 결과 |
+| result |
 | :--- |
 | `7` |
 | **1 row** |
@@ -179,7 +179,7 @@ RETURN one > two AS result
 
 ##### 쿼리결과
 
-| 결과 |
+| result |
 | :--- |
 | `true` |
 | **1 row** |
@@ -200,7 +200,7 @@ RETURN candidate
 
 ##### 쿼리결과
 
-| 결과 |
+| candidate |
 | :--- |
 | `"John"` |
 | `"Jonathan"` |
@@ -218,3 +218,37 @@ RETURN candidate
 * `NOT`
 
 `AND`, `OR`, `XOR`, `NOT`에 대한 참거짓표 입니다.
+
+| a | b | a `AND` b | a `OR` b | a `XOR` b | `NOT` a |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `false` | `false` | `false` | `false` | `false` | `true` |
+| `false` | `null` | `false` | `null` | `null` | `true` |
+| `false` | `true` | `false` | `true` | `true` | `true` |
+| `true` | `false` | `false` | `true` | `true` | `false` |
+| `true` | `null` | `null` | `true` | `null` | `false` |
+| `true` | `true` | `true` | `true` | `false` | `false` |
+| `null` | `false` | `false` | `null` | `null` | `null` |
+| `null` | `null` | `null` | `null` | `null` | `null` |
+| `null` | `true` | `null` | `true` | `null` | `null` |
+
+#### 숫자 필터를 위한 Boolean 연산자 {#chapter3255_1}
+
+##### 쿼리
+
+```cypher
+WITH [2, 4, 7, 9, 12] AS numberlist
+UNWIND numberlist AS number
+WITH number
+WHERE number = 4 OR (number > 6 AND number < 10)
+RETURN number
+```
+
+##### 쿼리결과
+
+| number |
+| :--- |
+| `4` |
+| `7` |
+| `9` |
+| **9 rows** |
+
