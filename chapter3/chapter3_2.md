@@ -23,17 +23,17 @@
   * [인덱스 값(특정 인덱스 지칭)](/chapter3/chapter3_2_4.md#chapter32412)
   * [인덱스 쿼리(특정 인덱스 지칭)](/chapter3/chapter3_2_4.md#chapter32413)
 * [연산자](/chapter3/chapter3_2_5.md)
-  * Operators at a glance
-  * General operators
-  * Mathematical operators
-  * Comparison operators
-  * Boolean operators
-  * String operators
-  * List operators
-  * Property operators
-  * Equality and comparison of values
-  * Ordering and comparison of values
-  * Chaining comparison operations
+  * [연산자 개요](/chapter3/chapter3_2_5.md#chapter3251)
+  * [일반적 연산자](/chapter3/chapter3_2_5.md#chapter3252)
+  * [수학적 연산자](/chapter3/chapter3_2_5.md#chapter3253)
+  * [비교 연산자](/chapter3/chapter3_2_5.md#chatper3254)
+  * [Boolean 연산자](/chapter3/chapter3_2_5.md#chapter3255)
+  * [문자열 연산자](/chapter3/chapter3_2_5.md#chapter3256)
+  * [목록 연산자](/chapter3/chapter3_2_5.md#chapter3257)
+  * [속성 연산자](/chapter3/chapter3_2_5.md#chapter3258)
+  * [값의 동등 비교](/chapter3/chapter3_2_5.md#chapter3259)
+  * [값의 순서 비교](/chapter3/chapter3_2_5.md#chapter32510)
+  * [비교 연산자 연결](/chapter3/chapter3_2_5.md#chapter32511)
 * [주석](/chapter3/chapter3_2_6.md)
 * Patterns
   * Patterns for nodes
