@@ -148,3 +148,73 @@ RETURN b - a AS result
 | :--- |
 | `7` |
 | **1 row** |
+
+### 3.2.5.4 비교 연산자 {#chapter3254}
+
+비교 연산자는 다음과 같습니다.
+
+* 같다 : `=`
+* 다르다 : `<>`
+* 작다 : `<`
+* 크다 : `>`
+* 작거나 같다 : `<=`
+* 크거나 같다 : `>=`
+* `IS NULL`
+* `IS NOT NULL`
+
+#### 문자특화 비교 연산자 {#chapter3254_1}
+
+* `START WITH` : 문자열에서 대소문자 구분해서 시작부분부터 비교
+* `ENDS WITH` : 문자열에서 대소문자 구분해서 끝부분 부터 비교
+* `CONTAINS` : 문자열에서 대소문자 구분해서 포함하는지 비교
+
+#### 두개의 숫자 비교 {#chapter3254_2}
+
+##### 쿼리
+
+```cypher
+WITH 4 AS one, 3 AS two
+RETURN one > two AS result
+```
+
+##### 쿼리결과
+
+| 결과 |
+| :--- |
+| `true` |
+| **1 row** |
+
+비교 연산자에 대한 상세한 동작은 [3.2.5.9 값의 동등 비교](#chapter3259)를 참고하시기 바랍니다. 더 많은 예시는 [3.3.7.8 범위 사용](/chapter3/chapter3_3_7.md#chapter3378)을 참고하시기 바랍니다.
+
+#### 이름 필터를 위한 `START WITH` 연산자 {#chapter3254_3}
+
+##### 쿼리
+
+```cypher
+WITH ['John', 'Mark', 'Jonathan', 'Bill'] AS somenames
+UNWIND somenames AS names
+WITH names AS candidate
+WHERE candidate STARTS WITH 'Jo'
+RETURN candidate
+```
+
+##### 쿼리결과
+
+| 결과 |
+| :--- |
+| `"John"` |
+| `"Jonathan"` |
+| **2 rows** |
+
+문자열에 특화된 비교 연산자를 사용한 다양한 예제와 함께 자세한 정보는 [3.3.7.3 문자열 매칭](/chapter3/chapter3_3_7.md#chapter3373)을 참고하시기 바랍니다.
+
+### 3.2.5.5 Boolean 연산자
+
+논리연산자로 잘 알려진 Boolean 연산자는 다음과 같습니다.
+
+* `AND`
+* `OR`
+* `XOR`
+* `NOT`
+
+`AND`, `OR`, `XOR`, `NOT`에 대한 참거짓표 입니다.
