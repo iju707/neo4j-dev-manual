@@ -69,3 +69,82 @@ RETURN DISTINCT p.eyeColor
 
 `DISTINCT` 연산자는 일반적으로 [집계 함수](/chapter3/chapter3_4_3.md)와 함께 사용됩니다.
 
+### 맵구조에서 `.`을 사용하여 속성접근하기 {#chapter3252_2}
+
+#### 쿼리
+
+```cypher
+WITH { person: { name: 'Anne', age: 25 }} AS p
+RETURN p.person.name
+```
+
+#### 쿼리결과
+
+| p.person.name |
+| :--- |
+| `"Anne"` |
+| ** 1 row ** |
+
+### `[]`연산자를 사용하여 동적으로 속성키를 필터링하기 {#chapter3252_3}
+
+#### 쿼리
+
+```cypher
+CREATE (a:Restaurant { name: 'Hungry Jo', rating_hygiene: 10, rating_food: 7 }),(b:Restaurant { name: 'Buttercup Tea Rooms', rating_hygiene: 5, rating_food: 6 }),(c1:Category { name: 'hygiene' }),(c2:Category { name: 'food' })
+WITH a, b, c1, c2
+MATCH (restaurant:Restaurant),(category:Category)
+WHERE restaurant["rating_" + category.name]> 6
+RETURN DISTINCT restaurant.name
+```
+
+#### 쿼리결과
+
+| restaurant.name |
+| :--- |
+| `"Hungry Jo"` |
+| **1 row Nodes created: 4 Properties set: 8 Labels added: 4** |
+
+동적 속성접근에 대하여 자세한 내용은 [3.3.7.2 기본적 사용법](/chapter3/chapter3_3_7.md#chapter3372)를 보시기 바랍니다.
+
+### 3.2.5.3 수학적 연산자 {#chapter3253}
+
+수학적 연산자는 다음과 같습니다.
+
+* 더하기 : `+`
+* 빼기 또는 단항 음수 : `-`
+* 곱하기 : `*`
+* 나누기 : `/`
+* 나머지 : `%`
+* 지수화 : `^`
+
+#### 누승 연산자 `^` 사용하기 {#chapter3253_1}
+
+##### 쿼리
+
+```cypher
+WITH 2 AS number, 3 AS exponent
+RETURN number ^ exponent AS result
+```
+
+##### 결과
+
+| 결과 |
+| :--- |
+| `8.0` |
+| **1 row** |
+
+#### 단항 음수 연산자 `-` 사용하기 {#chapter3253_2}
+
+##### 쿼리
+
+```cypher
+WITH -3 AS a, 4 AS b
+RETURN b - a AS result
+```
+
+##### 쿼리결과
+
+| 결과 |
+| :--- |
+| `7` |
+| **1 row** |
