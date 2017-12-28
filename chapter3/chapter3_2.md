@@ -9,18 +9,19 @@
   * [`CASE` 표현식](/chapter3/chapter3_2_2.md#chapter3223)
 * [변수](/chapter3/chapter3_2_3.md)
 * [파라미터](/chapter3/chapter3_2_4.md)
-  * String literal
-  * Regular expression
-  * Case-sensitive string pattern matching
-  * Create node with properties
-  * Create multiple nodes with properties
-  * Setting all properties on a node
-  * SKIP and LIMIT
-  * Node id
-  * Multiple node ids
-  * Calling procedures
-  * Index value \(explicit indexes\)
-  * Index query \(explicit indexes\)
+  * [소개](/chapter3/chapter3_2_4.md#chapter3241)
+  * [문자 literal](/chapter3/chapter3_2_4.md#chapter3242)
+  * [정규식](/chapter3/chapter3_2_4.md#chapter3243)
+  * [대소문자구분 문자열 비교](/chapter3/chapter3_2_4.md#chapter3244)
+  * [속성포함 노드 생성](/chapter3/chapter3_2_4.md#chapter3245)
+  * [속성포함 다수 노드 생성](/chapter3/chapter3_2_4.md#chapter3246)
+  * [노드의 모든 속성 설정](/chapter3/chapter3_2_4.md#chapter3247)
+  * [`SKIP`과 `LIMIT`](/chapter3/chapter3_2_4.md#chapter3248)
+  * [노드 Id](/chapter3/chapter3_2_4.md#chapter3249)
+  * [다수의 노드 Id](/chapter3/chapter3_2_4.md#chapter32410)
+  * [프로시져 호출](/chapter3/chapter3_2_4.md#chapter32411)
+  * [인덱스 값(특정 인덱스 지칭)](/chapter3/chapter3_2_4.md#chapter32412)
+  * [인덱스 쿼리(특정 인덱스 지칭)](/chapter3/chapter3_2_4.md#chapter32413)
 * [연산자](/chapter3/chapter3_2_5.md)
   * Operators at a glance
   * General operators
