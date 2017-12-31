@@ -252,3 +252,37 @@ RETURN number
 | `9` |
 | **9 rows** |
 
+### 3.2.5.6 문자열 연산자 {#chapter3256}
+
+문자열 연산자는 다음과 같습니다.
+
+* 문자열 연결 : `+`
+* 정규식 비교 : `=~`
+
+#### 단어 필터를 위한 정규식 `=~` 연산자 {#chapter3256_1}
+
+##### 쿼리
+
+```cypher
+WITH ['mouse', 'chair', 'door', 'house'] AS wordlist
+UNWIND wordlist AS word
+WITH word
+WHERE word =~ '.*ous.*'
+RETURN word
+```
+
+##### 쿼리결과
+
+| word |
+| :--- |
+| `"mouse"` |
+| `"house"` |
+| **2 rows** |
+
+정규식을 이용하여 필터링하는 방법에 대한 더 자세한 내용과 예제는 [3.3.7.4 정규식 표현](/chapter3/chapter3_3_7.md#chapter3374)를 참고 하시기 바랍니다. 추가로 문자열 비교에 관련된 내용은 [문자특화 비교 연산자](#chapter3254_1)를 참고 하시기 바랍니다.
+
+### 3.2.5.7 목록 연산자 {chapter3257}
+
+
+
+
