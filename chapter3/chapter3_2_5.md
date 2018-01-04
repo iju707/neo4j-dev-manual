@@ -283,6 +283,72 @@ RETURN word
 
 ### 3.2.5.7 목록 연산자 {chapter3257}
 
+목록 연산자는 다음과 같습니다.
 
+* 목록 연결하기 : `+`
+* 목록에 숫자 존재여부 확인 : `IN`
+* 목록의 항목에 접근하기 : `[]`
 
+#### `+` 연산자를 사용하여 목록 연결하기 {#chapter3257_1}
+
+##### 쿼리
+
+```cypher
+RETURN [1,2,3,4,5]+[6,7] AS myList
+```
+
+##### 쿼리결과
+
+| myList |
+| :--- |
+| `[1,2,3,4,5,6,7]` |
+| **1 row** |
+
+#### `IN` 연산자를 사용하여 목록에 숫자 존재여부 확인 {#chapter3257_2}
+
+##### 쿼리
+
+```cypher
+WITH [2, 3, 4, 5] AS numberlist
+UNWIND numberlist AS number
+WITH number
+WHERE number IN [2, 3, 8]
+RETURN number
+```
+
+##### 쿼리결과
+
+| number |
+| :--- |
+| `2` |
+| `3` |
+| **2 rows** |
+
+#### `[]` 연산자를 사용하여 목록의 항목에 접근하기 {#chapter3257_3}
+
+##### 쿼리
+
+```cypher
+WITH ['Anne', 'John', 'Bill', 'Diane', 'Eve'] AS names
+RETURN names[1..3] AS result
+```
+
+대괄호는 목록에서 인덱스 `1`부터 인덱스 `3`까지(제외됨) 항목을 추출하게 됩니다. 
+
+##### 쿼리결과
+
+| result |
+| :--- |
+| `["John", "Bill"]` |
+| **1 row** |
+
+### 3.2.5.8 속성 연산자 {#chapter3258}
+
+> 버전 2.0 이후, 기존에 지원한 속성 연산자 `?`와 `!`는 삭제되었습니다. 더 이상 지원되지 않습니다. 없는 속성의 경우 `null`을 반환할 것 입니다. 만약 기존의 `?` 연산자 작업이 필요한 경우에는 `(NOT(exists(<ident>.prop)) OR <ident>.prop=<value>)`를 사용하시면 됩니다. 또한 선택적 관계에 활용된 `?` 연산자도 삭제되었으며 `OPTIONAL MATCH`절을 활용하시면 됩니다.
+
+### 값의 동등 비교 {#chapter3259}
+
+### 값의 순서 비교 {#chapter32510}
+
+### 비교 연산자 연결 {#chapter32511}
 
