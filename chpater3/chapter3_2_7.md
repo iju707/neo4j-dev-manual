@@ -97,15 +97,15 @@ CREATE절에서는 특정한 속성들을 한개의 파라미터로 사용할 �
 (a)-[r:REL_TYPE]->(b)
 ```
 
-Unlike labels, relationships can only have one type. But if we’d like to describe some data such that the relationship could have any one of a set of types, then they can all be listed in the pattern, separating them with the pipe symbol | like this:
+라벨과는 다르게 관계는 한개의 타입만 가질 수 있습니다. 다만, 여러가지 타입 중 한가지를 관계로 가지는 데이터를 표현할 때 `|` 파이프로 타입을 분리하여 목록화 하는 패턴으로 표현할 수 있습니다.
 
 ```cypher
 (a)-[r:TYPE1|TYPE2]->(b)
 ```
 
-Note that this form of pattern can only be used to describe existing data (ie. when using a pattern with MATCH or as an expression). It will not work with CREATE or MERGE, since it’s not possible to create a relationship with multiple types.
+위의 패턴은 기존 데이터에 대한 것만 표현할 수 있습니다.(예, MATCH 절 또는 표현식을 사용하는 패턴) 그래서 CREATE나 MERGE 절에서는 다수의 타입을 가지는 관계를 생성할 수 없기 때문에 사용할 수 없습니다.
 
-As with nodes, the name of the relationship can always be omitted, as exemplified by:
+노드와 같이 관계의 이름도 필요에 따라 생략할 수 있습니다.
 
 ```cypher
 (a)-[:REL_TYPE]->(b)
