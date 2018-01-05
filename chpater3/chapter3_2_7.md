@@ -151,6 +151,26 @@ CREATE절에서는 특정한 속성들을 한개의 파라미터로 사용할 �
 (a)-[*]->(b)
 ```
 
+아래의 간단한 그래프를 가지고 예를 들어보겠습니다.
+
+![](https://neo4j.com/docs/developer-manual/current/images/Patterns-1.svg)
+
+### 쿼리
+
+```cypher
+MATCH (me)-[:KNOWS*1..2]-(remote_friend)
+WHERE me.name = 'Filipa'
+RETURN remote_friend.name
+```
+
+### 쿼리결과
+
+| remote_friend.name |
+| :--- |
+| `"Dilshad"` |
+| `"Anders"` |
+| **2 rows** |
+
 
 
 ## 경로 변수 지정 {#chapter3278}
