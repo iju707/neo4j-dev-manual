@@ -59,7 +59,23 @@
 
 ## 속성 지정 {#chapter3275}
 
+Nodes and relationships are the fundamental structures in a graph. Neo4j uses properties on both of these to allow for far richer models.
 
+Properties can be expressed in patterns using a map-construct: curly brackets surrounding a number of key-expression pairs, separated by commas. E.g. a node with two properties on it would look like:
+
+```cypher
+(a {name: 'Andres', sport: 'Brazilian Ju-Jitsu'})
+```
+
+A relationship with expectations on it is given by:
+
+```cypher
+(a)-[{blocked: false}]->(b)
+```
+
+When properties appear in patterns, they add an additional constraint to the shape of the data. In the case of a CREATE clause, the properties will be set in the newly-created nodes and relationships. In the case of a MERGE clause, the properties will be used as additional constraints on the shape any existing data must have (the specified properties must exactly match any existing data in the graph). If no matching data is found, then MERGE behaves like CREATE and the properties will be set in the newly created nodes and relationships.
+
+Note that patterns supplied to CREATE may use a single parameter to specify properties, e.g: CREATE (node $paramName). This is not possible with patterns used in other clauses, as Cypher needs to know the property names at the time the query is compiled, so that matching can be done effectively.
 
 ## 관계 패턴 {#chapter3276}
 
