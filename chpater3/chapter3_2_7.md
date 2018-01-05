@@ -59,25 +59,43 @@
 
 ## 속성 지정 {#chapter3275}
 
-Nodes and relationships are the fundamental structures in a graph. Neo4j uses properties on both of these to allow for far richer models.
+노드와 관계는 그래프의 기본 구조입니다. Neo4j에서는 좀더 풍부한 모델을 제공하기 위하여 두가지 모두 속성정보를 제공합니다.
 
-Properties can be expressed in patterns using a map-construct: curly brackets surrounding a number of key-expression pairs, separated by commas. E.g. a node with two properties on it would look like:
+속성은 맵과 같은 구조의 패턴으로 표현될 수 있습니다. 중괄호로 둘러싸인 다수의 키-값 쌍을 쉼표로 구분하여 표현합니다. 만약 노드가 2가지의 속성을 가지고 있으면 다음과 같습니다.
 
 ```cypher
 (a {name: 'Andres', sport: 'Brazilian Ju-Jitsu'})
 ```
 
-A relationship with expectations on it is given by:
+관계가 속성을 가질 경우에는 다음과 같습니다.
 
 ```cypher
 (a)-[{blocked: false}]->(b)
 ```
 
-When properties appear in patterns, they add an additional constraint to the shape of the data. In the case of a CREATE clause, the properties will be set in the newly-created nodes and relationships. In the case of a MERGE clause, the properties will be used as additional constraints on the shape any existing data must have (the specified properties must exactly match any existing data in the graph). If no matching data is found, then MERGE behaves like CREATE and the properties will be set in the newly created nodes and relationships.
+패턴에 속성들이 보이게 되면, 데이터에 제약조건을 추가하는 것 입니다. CREATE 절에서는 새로 생성되는 노드나 관계에 설정할 속성이 됩니다. MERGE 절에서는 기존 데이터가 가지고 있어야될 추가적인 제약조건(그래프의 존재하는 데이터 중 정확히 일치할 특정 속성)으로 표현됩니다. 만약 일치하는 데이터가 없을 경우 MERGE는 CREATE절과 동일하게 새로 생성하는 노드나 관계에 설정될 속성으로 사용합니다.
 
-Note that patterns supplied to CREATE may use a single parameter to specify properties, e.g: CREATE (node $paramName). This is not possible with patterns used in other clauses, as Cypher needs to know the property names at the time the query is compiled, so that matching can be done effectively.
+CREATE절에서는 특정한 속성들을 한개의 파라미터로 사용할 수 있습니다. (예 : `CREATE (node $paramName)`) 이 패턴을 다른 절에서는 사용할 수 없습니다. Cypher는 매칭을 좀더 효율적으로 하기 위하여 쿼리를 컴파일할 때 속성에 대한 이름을 알아야 하기 때문입니다.
 
 ## 관계 패턴 {#chapter3276}
+
+관계를 가장 단순하게 표현하는 것은 이전 예제에서 소개한 것과 같이 2개의 노드간에 화살표로 표시하는 것 입니다. 이 방법을 이용하면 관계가 있는지, 어떤 방향성을 가지고 있는지 표현할 수 있습니다. 만약 관계에 대한 방향을 고려하지 않는다면, 화살표 방향을 생략하시면 됩니다.
+
+```cypher
+(a)--(b)
+```
+
+노드처럼 관계도 이름을 지정할 수 있습니다. 이 경우에는 화살표 가운데에 대괄호를 추가하고 이름을 지정하시면 됩니다.
+
+```cypher
+(a)-[r]->(b)
+```
+
+노드의 라벨과 유사하게 관계도 타입을 가지게 됩니다. 관계에 대한 타입을 표현할 경우에는 아래와 같이 하시면 됩니다.
+
+```cypher
+(a)-[r:REL_TYPE]->(b)
+```
 
 ## 가변길이 패턴 매칭 {#chapter3277}
 
