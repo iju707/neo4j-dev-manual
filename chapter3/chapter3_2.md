@@ -35,18 +35,19 @@
   * [값의 순서 비교](/chapter3/chapter3_2_5.md#chapter32510)
   * [비교 연산자 연결](/chapter3/chapter3_2_5.md#chapter32511)
 * [주석](/chapter3/chapter3_2_6.md)
-* Patterns
-  * Patterns for nodes
-  * Patterns for related nodes
-  * Patterns for labels
-  * Specifying properties
-  * Patterns for relationships
-  * Variable-length pattern matching
-  * Assigning to path variables
-* Lists
-  * Lists in general
-  * List comprehension
-  * Pattern comprehension
+* [패턴](/chapter3/chapter3_2_7.md)
+  * [소개](/chapter3/chapter3_2_7.md#chapter3271)
+  * [노드의 패턴](/chapter3/chapter3_2_7.md#chapter3272)
+  * [관련된 노드들의 패턴](/chapter3/chapter3_2_7.md#chapter3273)
+  * [라벨의 패턴](/chapter3/chapter3_2_7.md#chapter3274)
+  * [속성 지정](/chapter3/chapter3_2_7.md#chapter3275)
+  * [관계 패턴](/chapter3/chapter3_2_7.md#chapter3276)
+  * [가변길이 패턴 매칭](/chapter3/chapter3_2_7.md#chapter3277)
+  * [경로 변수 지정](/chapter3/chapter3_2_7.md#chapter3278)
+* [목록](/chapter3/chapter3_2_8.md)
+  * [일반적인 목록](/chapter3/chapter3_2_8.md#chapter3281)
+  * [목록으로부터 목록생성](/chapter3/chapter3_2_8.md#chapter3282)
+  * [경로로부터 목록생성](/chapter3/chapter3_2_8.md#chapter3283)
 * Maps
   * Literal maps
   * Map projection
