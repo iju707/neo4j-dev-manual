@@ -12,7 +12,7 @@
         "token" : "UA-41121759-7"
       },
       "sitemap": {
-          "hostname": "http://dev.neo4j.oofbird.net/"
+          "hostname": "https://dev.neo4j.oofbird.net/"
       }
     }
 }
