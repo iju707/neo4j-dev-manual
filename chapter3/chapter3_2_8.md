@@ -190,6 +190,8 @@ RETURN [x IN range(0,10) WHERE x % 2 = 0] AS result
 RETURN [x IN range(0,10)| x^3] AS result
 ```
 
+### 쿼리결과
+
 | result |
 | :--- |
 | `[0.0,1.0,8.0,27.0,64.0,125.0,216.0,343.0,512.0,729.0,1000.0]` |
