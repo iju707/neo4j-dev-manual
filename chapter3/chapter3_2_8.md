@@ -154,6 +154,45 @@ RETURN size(range(0, 10)[0..3])
 
 ## 목록으로부터 목록생성(List comprehension) {#chapter3282}
 
-List comprehension는 Cypher에서 기존의 목록을 기반으로 새로운 목록을 생성할 수 있게 하는 구문구조 입니다. is a syntactic construct available in Cypher for creating a list based on existing lists. It follows the form of the mathematical set-builder notation (set comprehension) instead of the use of map and filter functions.
+List comprehension는 Cypher에서 기존의 목록을 기반으로 새로운 목록을 생성할 수 있게 하는 구문구조 입니다. 맵이나 필터함수를 사용하지 않고 수학적 설정구성 표기법으로 구성됩니다.
+
+### 쿼리
+
+```cypher
+RETURN [x IN range(0,10) WHERE x % 2 = 0 | x^3] AS result
+```
+
+### 쿼리결과
+
+| result |
+| :--- |
+| `[0.0,8.0,64.0,216.0,512.0,1000.0]` |
+| **1 row** |
+
+필터나 맵을 각기 사용하고 싶으면, `WHERE`절이나 표현식 부분을 생략할 수 있습니다.
+
+### 쿼리
+
+```cypher
+RETURN [x IN range(0,10) WHERE x % 2 = 0] AS result
+```
+
+### 쿼리결과
+
+| result |
+| :--- |
+| `[0,2,4,6,8,10]` |
+| **1 row** |
+
+### 쿼리 
+
+```cypher
+RETURN [x IN range(0,10)| x^3] AS result
+```
+
+| result |
+| :--- |
+| `[0.0,1.0,8.0,27.0,64.0,125.0,216.0,343.0,512.0,729.0,1000.0]` |
+| **1 row** |
 
 ## 경로로부터 목록생성 {#chapter3283}
