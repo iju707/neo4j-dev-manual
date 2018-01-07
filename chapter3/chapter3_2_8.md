@@ -137,6 +137,23 @@ RETURN range(0, 10)[5..15]
 | `[5,6,7,8,9,10]` |
 | **1 row** |
 
-## 목록으로부터 목록생성 {#chapter3282}
+목록에 대한 크기는 다음으로 구할 수 있습니다.
+
+### 쿼리
+
+```cypher
+RETURN size(range(0, 10)[0..3])
+```
+
+### 쿼리결과
+
+| size(range(0, 10)[0..3]) |
+| :--- |
+| `3` |
+| **1 row** |
+
+## 목록으로부터 목록생성(List comprehension) {#chapter3282}
+
+List comprehension는 Cypher에서 기존의 목록을 기반으로 새로운 목록을 생성할 수 있게 하는 구문구조 입니다. is a syntactic construct available in Cypher for creating a list based on existing lists. It follows the form of the mathematical set-builder notation (set comprehension) instead of the use of map and filter functions.
 
 ## 경로로부터 목록생성 {#chapter3283}
