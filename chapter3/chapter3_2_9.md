@@ -10,4 +10,10 @@
 
 ![](https://neo4j.com/docs/developer-manual/current/images/Maps-1.svg)
   
-## 3.2.9.1 맵 문법 {chapter3291}
+## 3.2.9.1 맵 문법 {#chapter3291}
+
+Cypher에서 
+
+## 3.2.9.2 맵 투영 {#chapter3292}
+
+### 맵 투영 예제 {#chapter32921}
