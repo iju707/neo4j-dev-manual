@@ -11,7 +11,7 @@ Cypher를 이용하여 그래프에 대한 질의 및 갱신을 할 수 있습�
 
 쿼리가 단순히 읽기만 수행할 경우 Cypher는 실행을 보류하고 결과를 요청할 때 실행합니다. 갱신 쿼리의 경우, 의미상 쓰기가 발생하기전에 모든 읽기 행동을 완료합니다.
 
-The only pattern where the query parts are implicit is when you first read and then write — any other order and you have to be explicit about your query parts. 쿼리의 각 부분을 `WITH` 절을 활용하여 분리할 수 있습니다. `WITH`절은 실행할 것과 실행된 것 간을 차단하여 이벤트간 구분선과 같은 역할을 합니다.
+일반적으로 쿼리의 패턴은 먼저 읽고 쓰는 것 입니다. 다른 순서로 할 경우에는 쿼리 부분에 대하여 명시를 해야합니다. 이때 쿼리의 각 부분을 `WITH` 절을 활용하여 분리할 수 있습니다. `WITH`절은 실행할 것과 실행된 것 간을 차단하여 이벤트간 구분선과 같은 역할을 합니다.
 
 집합처리된 데이터에 대하여 필터하고 싶은 경우, 두개의 쿼리 부분으로 나눠야 합니다. - 첫번째는 집합처리, 두번째는 첫번째 결과에 대한 필터
 
