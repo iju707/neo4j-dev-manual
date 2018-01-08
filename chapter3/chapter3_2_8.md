@@ -197,4 +197,26 @@ RETURN [x IN range(0,10)| x^3] AS result
 | `[0.0,1.0,8.0,27.0,64.0,125.0,216.0,343.0,512.0,729.0,1000.0]` |
 | **1 row** |
 
-## 경로로부터 목록생성 {#chapter3283}
+## 경로로부터 목록생성(Pattern comprehension) {#chapter3283}
+
+Pattern comprehension는 Cypher에서 패턴 매칭을 통해 새로운 목록을 생성할 수 있게 하는 구문구조 입니다. 일반적인 `MATCH`절과 `WHERE`절을 사용하여 매칭을 한 뒤 원하는 방식의 결과출력문을 사용합니다.
+
+예제를 위한 그래프는 다음과 같습니다.
+
+![](https://neo4j.com/docs/developer-manual/current/images/Lists-1.svg)
+
+### 쿼리
+
+```cypher
+MATCH (a:Person { name: 'Charlie Sheen' })
+RETURN [(a)-->(b) WHERE b:Movie | b.year] AS years
+```
+
+### 쿼리결과
+
+| years |
+| :--- |
+| `[1979, 1984, 1987]` |
+| **1 row** |
+
+`WHERE`절을 포함한 전체 술어부는 선택사항이므로 생략이 가능합니다.
