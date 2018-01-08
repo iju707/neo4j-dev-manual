@@ -1,8 +1,8 @@
 # Summary
 
 * [소개](README.md)
-* [2.시작하기](chapter2.md)
-  * [2.2Cypher로시작하기](chapter2/chapter2_2.md)
+* [2. 시작하기](chapter2.md)
+  * [2.2 Cypher로 시작하기](chapter2/chapter2_2.md)
 * [3. Cypher](chapter3.md)
   * [3.1 소개](chapter3/chapter3_1.md)
     * [3.1.1 Cypher란무엇인가?](chapter3/chapter3_1_1.md)
@@ -20,6 +20,7 @@
     * [3.2.8 목록](chapter3/chapter3_2_8.md)
     * [3.2.9 맵](chapter3/chapter3_2_9.md)
     * [3.2.10 null 사용법](chapter3/chapter3_2_10.md)
+  * [3,3](chapter3/chapter3_3.md)
 * [5. HTTP API](chapter5.md)
   * [5.1 트랜잭션 Cypher HTTP 종점](chapter5/chapter5_1.md)
 * [B.용어](appendixB.md)
