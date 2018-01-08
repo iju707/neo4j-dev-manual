@@ -48,9 +48,9 @@
   * [일반적인 목록](/chapter3/chapter3_2_8.md#chapter3281)
   * [목록으로부터 목록생성](/chapter3/chapter3_2_8.md#chapter3282)
   * [경로로부터 목록생성](/chapter3/chapter3_2_8.md#chapter3283)
-* Maps
-  * Literal maps
-  * Map projection
+* [맵](/chapter3/chapter3_2_9.md)
+  * [맵 문법](/chapter3/chapter3_2_9.md#chapter3291)
+  * [맵 투영](/chapter3/chapter3_2_9.md#chapter3292)
 * [`null` 사용법](/chapter3/chapter3_2_10.md)
   * [Cypher에서의 `null`](/chapter3/chapter3_2_10.md#chapter32101)
   * [`null`이 포함된 논리연산](/chapter3/chapter3_2_10.md#chapter32102)  
