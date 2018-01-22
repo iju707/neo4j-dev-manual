@@ -1,5 +1,5 @@
 {
-    "plugins": ["adsense", "ga", "sitemap"],
+    "plugins": ["adsense"],
     "pluginsConfig": {
       "adsense": {
         "client": "ca-pub-1537305666483956",
@@ -7,12 +7,6 @@
         "format": "auto",
         "element": ".page-inner section",
         "position": "top"
-      },
-      "ga": {
-        "token" : "UA-41121759-7"
-      },
-      "sitemap": {
-          "hostname": "https://dev.neo4j.oofbird.net/"
       }
     }
 }
