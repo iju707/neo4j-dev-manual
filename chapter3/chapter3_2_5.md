@@ -10,7 +10,7 @@
   * [단항 음수 연산자 `-` 사용하기](#chapter3253_2)
 * [비교 연산자](#chatper3254)
   * [두개의 숫자 비교](#chapter3254_2)
-  * [이름 필터를 위한 `START WITH` 연산자](#chapter3254_3)
+  * [이름 필터를 위한 `STARTS WITH` 연산자](#chapter3254_3)
 * [Boolean 연산자](#chapter3255)
   * [숫자 필터를 위한 Boolean 연산자](#chapter3255_1)
 * [문자열 연산자](#chapter3256)
@@ -31,7 +31,7 @@
 | [일반적 연산자](#chapter3252) | `DISTINCT`, 속성접근을 위한 `.`, 동적 속성접근을 위한 `[]` |
 | [수학적 연산자](#chapter3253) | `+`, `-`, `*`, `/`, `%`, `^` |
 | [비교 연산자](#chatper3254) | `=`, `<>`, `<`, `>`, `<=`, `>=`, `IS NULL`, `IS NOT NULL` |
-| [문자특화 비교 연산자](#chapter3254_1) | `START WITH`, `ENDS WITH`, `CONTAINS` |
+| [문자특화 비교 연산자](#chapter3254_1) | `STARTS WITH`, `ENDS WITH`, `CONTAINS` |
 | [Boolean 연산자](#chapter3255) | `AND`, `OR`, `XOR`, `NOT` |
 | [문자열 연산자](#chapter3256) | 연결을 위한 `+`, 정규식을 위한 `=~` |
 | [목록 연산자](#chapter3257) | 연결을 위한 `+`, 항목 존재여부 확인을 위한 `IN`, 항목접근을 위한 `[]` |
@@ -164,7 +164,7 @@ RETURN b - a AS result
 
 #### 문자특화 비교 연산자 {#chapter3254_1}
 
-* `START WITH` : 문자열에서 대소문자 구분해서 시작부분부터 비교
+* `STARTS WITH` : 문자열에서 대소문자 구분해서 시작부분부터 비교
 * `ENDS WITH` : 문자열에서 대소문자 구분해서 끝부분 부터 비교
 * `CONTAINS` : 문자열에서 대소문자 구분해서 포함하는지 비교
 
@@ -186,7 +186,7 @@ RETURN one > two AS result
 
 비교 연산자에 대한 상세한 동작은 [3.2.5.9 값의 동등 비교](#chapter3259)를 참고하시기 바랍니다. 더 많은 예시는 [3.3.7.8 범위 사용](/chapter3/chapter3_3_7.md#chapter3378)을 참고하시기 바랍니다.
 
-#### 이름 필터를 위한 `START WITH` 연산자 {#chapter3254_3}
+#### 이름 필터를 위한 `STARTS WITH` 연산자 {#chapter3254_3}
 
 ##### 쿼리
 
