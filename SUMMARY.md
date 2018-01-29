@@ -22,6 +22,7 @@
     * [3.2.10 null 사용법](chapter3/chapter3_2_10.md)
   * [3.3 절](chapter3/chapter3_3.md)
     * [3.3.1 MATCH](chapter3/chapter3_3_1.md)
+    * [3.3.12 DELETE](chapter3/chapter3_3_12.md)
 * [5. HTTP API](chapter5.md)
   * [5.1 트랜잭션 Cypher HTTP 종점](chapter5/chapter5_1.md)
 * [B.용어](appendixB.md)
