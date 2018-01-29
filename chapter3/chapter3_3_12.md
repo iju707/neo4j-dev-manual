@@ -6,6 +6,7 @@
 * [단일 노드 삭제](#chapter3312_2)
 * [모든 노드/관계 삭제](#chapter3312_3)
 * [노드와 관계된 모든 관계 삭제](#chapter3312_4)
+* [관계만 삭제](#chapter3312_5)
 
 ## 3.3.12.1 소개 {#chapter3312_1}
 
@@ -37,7 +38,64 @@ Nodes deleted: 1
 
 ## 3.3.12.3 모든 노드/관계 삭제 {#chapter3312_3}
 
-다음 쿼리는 대규모의 데이터를 삭제할 때보다는, 작은 규모의 샘플 데이터를 가지고 진행할 때 유용한 것 입니다.
+다음 쿼리는 대규모의 데이터를 삭제할 때 사용하라고 있는 쿼리는 아니지만, 작은 규모의 샘플 데이터를 가지고 진행할 때 유용할 것 입니다.
+
+### 쿼리
+
+```cypher
+MATCH (n)
+DETACH DELETE n
+```
+
+### 쿼리결과
+
+```
++-------------------+
+| No data returned. |
++-------------------+
+Nodes deleted: 3
+Relationships deleted: 2
+```
 
 ## 3.3.12.4 노드와 관계된 모든 관계 삭제 {#chapter3312_4}
 
+특정 노드와 그와 관계된(시작 또는 종료) 모든 관계를 포함하여 삭제할 경우 `DETACH DELETE`절을 사용하시면 됩니다.
+
+### 쿼리
+
+```cypher
+MATCH (n { name: 'Andres' })
+DETACH DELETE n
+```
+
+### 쿼리결과
+
+```
++-------------------+
+| No data returned. |
++-------------------+
+Nodes deleted: 1
+Relationships deleted: 2
+```
+
+## 3.3.12.5 관계만 삭제 {#chapter3312_5}
+
+노드에 영향을 주지 않고 관계만 삭제가 가능합니다.
+
+### 쿼리
+
+```cypher
+MATCH (n { name: 'Andres' })-[r:KNOWS]->()
+DELETE r
+```
+
+이름이 **Andres**인 노드로부터 나가는 방향의 타입이 **KNOWS**인 모든 관계를 삭제합니다.
+
+### 쿼리결과
+
+```
++-------------------+
+| No data returned. |
++-------------------+
+Relationships deleted: 2
+```
