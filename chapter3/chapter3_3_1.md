@@ -78,6 +78,24 @@
 
 ### 단일 최단경로 {#chapter331_5_1}
 
+두개의 노드사이에 최댄경로를 쉽게 찾으려면 `shortesPath` 함수를 사용하시면 됩니다.
+
+#### 쿼리
+
+```cypher
+MATCH (martin:Person { name: 'Martin Sheen' }),(oliver:Person { name: 'Oliver Stone' }), p = shortestPath((martin)-[*..15]-(oliver))
+RETURN p
+```
+
+위 함수 의미는 두개의 노드간 최단거리를 찾는데 최대 길이는 15로 설정하였습니다. 괄호안에 시작 노드, 연결관계, 종료노드를 가지고 단일 경로를 정의하시면 됩니다. 최단경로를 찾을 때 관계타입, 관계길이, 방향 등의 특성을 사용할 수 있습니다. `shortestPath`함수가 있는 `MATCH` 절에 `WHERE`절이 포함되면, 관련된 조건은 `shortestPath`에 적용됩니다. 경로의 관계에 `none()`이나 `all()` 조건은 성능을 향상시키기 위한 탐색을 하는데 사용됩니다. ([3.7.6 최단경로 플랜](/chpater3/chpater3_7_6.md)를 참고하시기 바랍니다)
+
+#### 쿼리결과
+
+| p |
+| :--- |
+| `[Node[1]{name:"Martin Sheen"},:ACTED_IN[1]{role:"Carl Fox"},Node[5]{title:"Wall Street"},:DIRECTED[3]{},Node[3]{name:"Oliver Stone"}]` |
+| **1 row** |
+
 ### 조건기반 최단경로 {#chapter331_5_2}
 
 ### 모든 최단경로 {#chapter331_5_3}
@@ -132,3 +150,23 @@ RETURN r
 
 ### ID기준 다수 노드 {#chapter331_6_3}
 
+`IN` 절을 활용해서 다수의 노드를 ID 기준으로 선택할 수 있습니다.
+
+#### 쿼리
+
+```cypher
+MATCH (n)
+WHERE id(n) IN [0, 3, 5]
+RETURN n
+```
+
+`IN` 절에 있는 모든 노드를 반환합니다.
+
+#### 쿼리결과
+
+| n |
+| :--- |
+| `Node[0]{name:"Charlie Sheen"}` |
+| `Node[3]{name:"Oliver Stone"}` |
+| `Node[5]{title:"Wall Street"}` |
+| **3 rows** |
