@@ -52,6 +52,30 @@ Cypher는 선언적이기 때문에 항상 쿼리가 특정 알고리즘을 사�
 
 ### 모든 노드 가져오기 {#chapter331_2_1}
 
+단일 노드에 라벨이 없는 패턴을 사용하면 그래프의 전체 노드를 가져올 수 있습니다.
+
+#### 쿼리
+
+```cypher
+MATCH (n)
+RETURN n
+```
+
+데이터베이스의 모든 노드를 반환합니다.
+
+#### 쿼리결과
+
+| n |
+| :--- |
+| `Node[0]{name:"Charlie Sheen"}` |
+| `Node[1]{name:"Martin Sheen"}` |
+| `Node[2]{name:"Michael Douglas"}` |
+| `Node[3]{name:"Oliver Stone"}` |
+| `Node[4]{name:"Rob Reiner"}` |
+| `Node[5]{title:"Wall Street"}` |
+| `Node[6]{title:"The American President"}` |
+| **7 rows** |
+
 ### 특정 라벨의 모든 노드 가져오기 {#chapter331_2_2}
 
 ### 관련된 노드 가져오기 {#chapter331_2_3}
