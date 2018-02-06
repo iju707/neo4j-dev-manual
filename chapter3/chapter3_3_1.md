@@ -44,6 +44,10 @@ Cypher는 선언적이기 때문에 항상 쿼리가 특정 알고리즘을 사�
 
 > `MATCH` 절에 사용되는 패턴에 대한 자세한 정보는 [3.2.7 패턴](/chapter3/chapter3_2_7.md)을 보시기 바랍니다.
 
+예제에 다음 그래프를 사용하겠습니다.
+
+![](https://neo4j.com/docs/developer-manual/current/images/MATCH-3.svg)
+
 ## 기초적인 노드 찾기 {#chapter331_2}
 
 ### 모든 노드 가져오기 {#chapter331_2_1}
