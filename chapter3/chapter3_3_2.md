@@ -32,4 +32,4 @@ RETURN a.title, r
 | a.title | r |
 | :--- | :--- |
 | `"Wall Street"` | `<null>` |
-| **1 row** |
+| **1 row** ||
