@@ -130,6 +130,13 @@ RETURN movie.title
 
 `Person`라벨의 **Oliver Stone** 이름을 가진 노드에 연결된 `Movie`라벨 노드를 조회합니다.
 
+#### 쿼리결과
+
+| movie.title |
+| :--- |
+| `"Wall Street"` |
+| **1 row** |
+
 ## 관계 기본 {#chpater331_3}
 
 ### 나가는 관계 {#chapter331_3_1}
