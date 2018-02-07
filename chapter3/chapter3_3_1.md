@@ -78,9 +78,57 @@ RETURN n
 
 ### 특정 라벨의 모든 노드 가져오기 {#chapter331_2_2}
 
+특정 라벨에 대한 모든 노드를 가져오는 방법은 단일노드패턴에 원하는 라벨을 지정하시면 됩니다.
+
+#### 쿼리
+
+```cypher
+MATCH (movie:Movie)
+RETURN movie.title
+```
+
+데이터베이스의 모든 Moive를 반환합니다.
+
+#### 쿼리결과
+
+| movie.title |
+| :--- |
+| `"Wall Street"` |
+| `"The American President"` |
+| **2 rows** |
+
 ### 관련된 노드 가져오기 {#chapter331_2_3}
 
+`--` 기호는 관련이 있다는 표시입니다. 단, 관계의 타입이나 방향은 제외합니다.
+
+#### 쿼리
+
+```cypher
+MATCH (director { name: 'Oliver Stone' })--(movie)
+RETURN movie.title
+```
+
+**Oliver Stone**이 연출한 모든 영화가 반환될 것 입니다.
+
+#### 쿼리결과
+
+| movie.title |
+| :--- |
+| `"Wall Street"` |
+| **1 row** |
+
 ### 라벨을 활용하여 매칭하기 {#chapter331_2_4}
+
+노드에 대하여 특정라벨만 처리할 경우, 라벨문법을 패턴에 추가할 수 있습니다.
+
+#### 쿼리
+
+```cypher
+MATCH (:Person { name: 'Oliver Stone' })--(movie:Movie)
+RETURN movie.title
+```
+
+
 
 ## 관계 기본 {#chpater331_3}
 
