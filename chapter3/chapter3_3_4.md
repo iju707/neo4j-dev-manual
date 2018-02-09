@@ -147,9 +147,59 @@ RETURN a.age AS SomethingTotallyDifferent
 
 ## 3.3.4.8 선택적 속성 {#chapter334_8}
 
+속성의 존재유무와 상관없이 결과로 선택할 수 있습니다. 만약 해당 속성이 없는 경우에는 `null`로 처리됩니다.
+
+### 쿼리
+
+```cypher
+MATCH (n)
+RETURN n.age
+```
+
+노드가 `age`라는 속성이 있으면 해당 속성값을, 없으면 `null`을 반환합니다.
+
+### 쿼리결과
+
+| n.age |
+| :--- |
+| `55` |
+| `<null>` |
+| **2 rows** |
+
 ## 3.3.4.9 기타 표현식 {#chapter334_9}
+
+여러 표현식으로 반환값을 정의할 수 있습니다 - 문자열, 조건식, 속성, 함수, 기타 등등
+
+### 쿼리
+
+```cypher
+MATCH (a { name: 'A' })
+RETURN a.age > 30, "I'm a literal",(a)-->()
+```
+
+### 쿼리결과
+
+| a.age > 30 | "I'm a literal" | (a)-->() |
+| `true` | `"I'm a literal"` | `[[Node[0]{name:"A",happy:"Yes!",age:55},:BLOCKS[1]{},Node[1]{name:"B"}],[Node[0]{name:"A",happy:"Yes!",age:55},:KNOWS[0]{},Node[1]{name:"B"}]]` |
+| **1 row** |
 
 ## 3.3.4.10 결과 중복제거 {#chapter334_10}
 
+`DISTINCT`는 결과로 지정된 컬럼에 대하여 유일한 값만 반환하도록 합니다.
 
+### 쿼리
+
+```cypher
+MATCH (a { name: 'A' })-->(b)
+RETURN DISTINCT b
+```
+
+이름이 **A**인 노드에 연결된 노드가 반환되는데, 중복되므로 한번만 결과에 표시됩니다.
+
+### 쿼리결과
+
+| b |
+| :--- |
+| `Node[1]{name:"B"}` |
+| **1 row** |
 
