@@ -106,7 +106,44 @@ RETURN *
 
 ## 3.3.4.6 특수문자를 사용한 변수 {#chapter334_6}
 
+영문 알파벳이 아닌 문자를 포함하여 변수명을 사용할 경우에는 변수명에 ` ` `으로 감싸시면 됩니다.
+
+### 쿼리
+
+```cypher
+MATCH (`This isn\'t a common variable`)
+WHERE `This isn\'t a common variable`.name = 'A'
+RETURN `This isn\'t a common variable`.happy
+```
+
+노드의 이름이 "A"인 결과가 반환됩니다.
+
+### 쿼리결과
+
+| \`This isn\'t a common variable\`.happy |
+| :--- |
+| `"Yes!"` |
+| **1 row** |
+
 ## 3.3.4.7 컬럼 별칭 {#chapter334_7}
+
+표현식과 다르게 컬럼의 이름을 사용하고 싶은 경우에는 `AS <new name>` 방식으로 이름을 변경하시면 됩니다.
+
+### 쿼리
+
+```cypher
+MATCH (a { name: 'A' })
+RETURN a.age AS SomethingTotallyDifferent
+```
+
+노드의 나이 속성을 반환하지만 이름이 바뀌었습니다.
+
+### 쿼리결과
+
+| SomethingTotallyDifferent |
+| :--- |
+| `55` |
+| **1 row** |
 
 ## 3.3.4.8 선택적 속성 {#chapter334_8}
 
