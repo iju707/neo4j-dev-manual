@@ -65,7 +65,7 @@ RETURN r
 
 ## 3.3.4.4 속성 반환 {#chapter334_4}
 
-속성을 반환하려면 점(.)을 사용하시면 됩니다.
+속성을 반환하려면 점\(.\)을 사용하시면 됩니다.
 
 ### 쿼리
 
@@ -85,6 +85,25 @@ RETURN n.name
 
 ## 3.3.4.5 모든 요소 반환 {#chapter334_5}
 
+쿼리에서 찾은 모든 노드, 관계, 경로를 반환할 경우에는 `*`을 사용하시면 됩니다.
+
+### 쿼리
+
+```cypher
+MATCH p =(a { name: 'A' })-[r]->(b)
+RETURN *
+```
+
+쿼리에서 사용된 2개의 노드와 관계, 경로가 반환됩니다.
+
+### 쿼리결과
+
+| a | b | p | r |
+| :--- | :--- | :--- | :--- |
+| `Node[0]{name:"A",happy:"Yes!",age:55}` | `Node[1]{name:"B"}` | `[Node[0]{name:"A",happy:"Yes!",age:55},:BLOCKS[1]{},Node[1]{name:"B"}]` | `:BLOCKS[1]{}` |
+| `Node[0]{name:"A",happy:"Yes!",age:55}` | `Node[1]{name:"B"}` | `[Node[0]{name:"A",happy:"Yes!",age:55},:KNOWS[0]{},Node[1]{name:"B"}]` | `:KNOWS[0]{}` |
+| **2 rows||||
+
 ## 3.3.4.6 특수문자를 사용한 변수 {#chapter334_6}
 
 ## 3.3.4.7 컬럼 별칭 {#chapter334_7}
@@ -94,3 +113,6 @@ RETURN n.name
 ## 3.3.4.9 기타 표현식 {#chapter334_9}
 
 ## 3.3.4.10 결과 중복제거 {#chapter334_10}
+
+
+
