@@ -43,4 +43,46 @@ RETURN otherPerson.name
 
 ## 3.3.5.3 수집하기전 정렬하기 {#chapter335_3}
 
+수집하기전 결과를 정렬하여 정렬된 목록을 가져올 수 있습니다.
+
+### 쿼리
+
+```cypher
+MATCH (n)
+WITH n
+ORDER BY n.name DESC LIMIT 3
+RETURN collect(n.name)
+```
+
+이름을 역순으로 정렬하여 3명을 조회한 목록입니다.
+
+### 쿼리결과
+
+| collect(n.name) |
+| :--- |
+| `["Emil","David","Ceasar"]` |
+| **1 row** |
+
 ## 3.3.5.4 경로검색의 분기제한 {#chapter335_4}
+
+임의의 수로 제한검색을 위하여 경로를 매칭하고 특정수로 제한한 뒤 그 경로를 기반으로 매칭을 진행할 수 있습니다.
+
+### 쿼리
+
+```cypher
+MATCH (n { name: 'Anders' })--(m)
+WITH m
+ORDER BY m.name DESC LIMIT 1
+MATCH (m)--(o)
+RETURN o.name
+```
+
+`Anders`부터 시작해서 연결된 모든 노드를 매칭한 뒤 이름순으로 정렬하고 그 중 가장 첫번째 결과에서 매칭된 모든 노드의 이름을 반환합니다.
+
+### 쿼리결과
+
+| o.name |
+| :--- |
+| `"Bossman"` |
+| `"Anders"` |
+| **2 rows** |
