@@ -24,6 +24,7 @@
     * [3.3.1 MATCH](chapter3/chapter3_3_1.md)
     * [3.3.2 OPTIONAL MATCH](chapter3/chapter3_3_2.md)
     * [3.3.4 RETURN](chapter3/chapter3_3_4.md)
+    * [3.3.5 WITH](chapter3/chapter3_3_5.md)
     * [3.3.12 DELETE](chapter3/chapter3_3_12.md)
 * [5. HTTP API](chapter5.md)
   * [5.1 트랜잭션 Cypher HTTP 종점](chapter5/chapter5_1.md)
