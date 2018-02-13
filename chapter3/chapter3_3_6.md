@@ -132,9 +132,88 @@ RETURN y
 
 ## 3.3.6.6 `UNWIND`에 공백목록 사용 {#chapter336_6}
 
+빈 목록을 가지고 `UNWIND`를 사용하면 앞에 어떤 행이 존재하던, 다른 값을 포함하고 있던 결과가 반환되지 않습니다. 특히 `UNWIND []`의 경우 행을 0건으로 만들어 쿼리를 중단시키게 되며 결과가 반환되지 않습니다. `UNWIND v`와 같이 변수를 가지고 하는 경우 `v`가 이전 절에서 빈 목록이 되면 `MATCH`절이 아무런 결과가 없는 것 처럼 됩니다. `UNWIND`가 빈 목록을 처리하지 않도록 하려면, `CASE`를 사용해서 빈 목록을 `null`로 치환해주시면 됩니다 : `WITH [] AS list UNWIND CASE WHEN list = [] THEN [null] ELSE list END AS emptylist RETURN emptylist`
 
+### 쿼리
+
+```cypher
+UNWIND [] AS empty
+RETURN empty, 'literal_that_is_not_returned'
+```
+
+### 쿼리결과
+
+```
++----------------------------------------+
+| empty | 'literal_that_is_not_returned' |
++----------------------------------------+
++----------------------------------------+
+0 row
+```
 
 ## 3.3.6.7 `UNWIND`에 목록이 아닌 표현식 사용 {#chapter336_7}
 
+`UNWIND 5`와 같이 목록이 아닌 표현식으로 `UNWIND`를 사용하게 되면 에러가 발생합니다. 예외적으로 표현식이 `null`을 반환하면 결과 행이 0건으로 되며 실행을 중단하고 결과를 반환하지 않습니다.
+
+### 쿼리
+
+```cypher
+UNWIND NULL AS x
+RETURN x, 'some_literal'
+```
+
+### 쿼리결과
+
+```
++--------------------+
+| x | 'some_literal' |
++--------------------+
++--------------------+
+0 row
+```
+
 ## 3.3.6.8 목록 파라미터로 노드 생성 {#chapter336_8}
 
+목록 파라미터로부터 `FOREACH`를 사용하지 않고 노드와 관계를 생성할 수 있습니다.
+
+### 파라미터
+
+```json
+{
+  "events" : [ {
+    "year" : 2014,
+    "id" : 1
+  }, {
+    "year" : 2014,
+    "id" : 2
+  } ]
+}
+```
+
+### 쿼리
+
+```cypher
+UNWIND $events AS event
+MERGE (y:Year { year: event.year })
+MERGE (y)<-[:IN]-(e:Event { id: event.id })
+RETURN e.id AS x
+ORDER BY x
+```
+
+원본 목록의 값이 풀리게 되며 `MERGE`에 전달되어 노드와 관계를 찾고 생성하게 됩니다.
+
+### 쿼리결과
+
+```
++---+
+| x |
++---+
+| 1 |
+| 2 |
++---+
+2 rows
+Nodes created: 3
+Relationships created: 2
+Properties set: 3
+Labels added: 3
+```
