@@ -26,6 +26,7 @@
     * [3.3.4 RETURN](chapter3/chapter3_3_4.md)
     * [3.3.5 WITH](chapter3/chapter3_3_5.md)
     * [3.3.6 UNWIND](chapter3/chapter3_3_6.md)
+    * [3.3.9 SKIP](chapter3/chapter3_3_9.md)
     * [3.3.12 DELETE](chapter3/chapter3_3_12.md)
 * [5. HTTP API](chapter5.md)
   * [5.1 트랜잭션 Cypher HTTP 종점](chapter5/chapter5_1.md)
