@@ -19,7 +19,75 @@
 
 ## 3.3.14.2 속성 제거 {#chapter3314_2}
 
+Neo4j에서는 `null`값을 속성으로 저장하지 않습니다. 대신 만약 값이 없다면 속성자체를 가지지 않습니다. 그래서 해당 노드나 관계에 대하여 속성값을 없애는 것은 `REMOVE`를 사용하는 것과 동일합니다.
+
+### 쿼리
+
+```cypher
+MATCH (andres { name: 'Andres' })
+REMOVE andres.age
+RETURN andres
+```
+
+노드가 반환되면 `age`라는 속성이 제거됩니다.
+
+### 쿼리결과
+
+```cypher
++------------------------+
+| andres                 |
++------------------------+
+| Node[0]{name:"Andres"} |
++------------------------+
+1 row
+Properties set: 1
+```
+
 ## 3.3.14.3 노드에서 라벨제거 {#chapter3314_3}
 
+라벨을 삭제하려면 `REMOVE`를 사용하시면 됩니다.
+
+### 쿼리
+
+```cypher
+MATCH (n { name: 'Peter' })
+REMOVE n:German
+RETURN n
+```
+
+### 쿼리결과
+
+```cypher
++------------------------------+
+| n                            |
++------------------------------+
+| Node[2]{name:"Peter",age:34} |
++------------------------------+
+1 row
+Labels removed: 1
+```
+
 ## 3.3.14.4 다중 라벨제거 {#chapter3314_4}
+
+다수의 라벨을 제거할때도 `REMOVE`를 사용하시면 됩니다.
+
+### 쿼리
+
+```cypher
+MATCH (n { name: 'Peter' })
+REMOVE n:German:Swedish
+RETURN n
+```
+
+### 쿼리결과
+
+```cypher
++------------------------------+
+| n                            |
++------------------------------+
+| Node[2]{name:"Peter",age:34} |
++------------------------------+
+1 row
+Labels removed: 2
+```
 
