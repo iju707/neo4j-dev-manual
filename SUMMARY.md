@@ -30,6 +30,7 @@
     * [3.3.10 LIMIT](chapter3/chapter3_3_10.md)
     * [3.3.12 DELETE](chapter3/chapter3_3_12.md)
     * [3.3.14 REMOVE](chapter3/chapter3_3_14.md)
+    * [3.3.15 FOREACH](chapter3/chapter3_3_15.md)
 * [5. HTTP API](chapter5.md)
   * [5.1 트랜잭션 Cypher HTTP 종점](chapter5/chapter5_1.md)
 * [B.용어](appendixB.md)
