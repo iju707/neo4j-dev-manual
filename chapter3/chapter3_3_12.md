@@ -14,7 +14,7 @@
 
 아래의 내용은 다음의 그래프 예제를 가지고 진행하겠습니다.
 
-![](https://neo4j.com/docs/developer-manual/current/images/cypher-delete-graph.svg)
+![](https://neo4j.com/docs/developer-manual/current/images/DELETE-1.svg)
 
 ## 3.3.12.2 단일 노드 삭제 {#chapter3312_2}
 
