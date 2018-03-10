@@ -27,6 +27,7 @@
     * [3.3.4 RETURN](chapter3/chapter3_3_4.md)
     * [3.3.5 WITH](chapter3/chapter3_3_5.md)
     * [3.3.6 UNWIND](chapter3/chapter3_3_6.md)
+    * [3.3.7 WHERE](chapter3/chapter3_3_7.md)
     * [3.3.9 SKIP](chapter3/chapter3_3_9.md)
     * [3.3.10 LIMIT](chapter3/chapter3_3_10.md)
     * [3.3.12 DELETE](chapter3/chapter3_3_12.md)
