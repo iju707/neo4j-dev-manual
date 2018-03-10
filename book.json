@@ -1,5 +1,5 @@
 {
-    "plugins": ["adsense", "sitemap"],
+    "plugins": ["adsense", "sitemap", "meta"],
     "pluginsConfig": {
       "adsense": {
         "client": "ca-pub-1537305666483956",
@@ -10,6 +10,14 @@
       },
       "sitemap": {
         "hostname": "https://dev.neo4j.oofbird.net"
+      },
+      "meta": {
+        "data": [
+          {
+            "name" : "robots",
+            "content" : "index,follow"
+          }
+        ]
       }
     }
 }
