@@ -23,6 +23,7 @@
   * [3.3 절](chapter3/chapter3_3.md)
     * [3.3.1 MATCH](chapter3/chapter3_3_1.md)
     * [3.3.2 OPTIONAL MATCH](chapter3/chapter3_3_2.md)
+    * [3.3.3 START](chapter3/chapter3_3_3.md)
     * [3.3.4 RETURN](chapter3/chapter3_3_4.md)
     * [3.3.5 WITH](chapter3/chapter3_3_5.md)
     * [3.3.6 UNWIND](chapter3/chapter3_3_6.md)
