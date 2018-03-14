@@ -32,6 +32,18 @@
   
 ## 3.3.7.1 소개 {#chapter337_1}
 
+`WHERE` 절은 단독으로 사용하는 것이 아닌, `MATCH`, `OPTIONAL MATCH`, `START`, `WITH` 절의 부분으로 사용됩니다.
+
+`WITH`와 `START`의 경우 `WHERE`는 결과를 필터링 해주는 역할을 합니다.
+
+그와 반대로 `MATCH`와 `OPTIONAL MATCH`에서 `WHERE` 절은 패턴이 표현할 제약조건을 추가하는 것입니다. 매칭이 끝난 다음에 필터링하는 것으로 보이지 않습니다.
+
+> `MATCH`와 `OPTIONAL MATCH` 절이 다중으로 있는 경우, `WHERE`의 제약조건은 항상 바로 전에 있는 `MATCH`와 `OPTIONAL MATCH` 절의 부분으로 활용됩니다. 잘못된 `MATCH` 절에 `WHERE` 절을 추가하면 결과에 성능에 악영향을 미치게 됩니다.
+
+다음 그래프를 예시로 진행하겠습니다.
+
+![](https://neo4j.com/docs/developer-manual/current/images/WHERE-1.svg)
+
 ## 3.3.7.2 기본적인 사용법 {#chapter337_2}
 
 ### 부울 연산자 {#chapter337_2_1}
