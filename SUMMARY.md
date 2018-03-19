@@ -19,7 +19,7 @@
     * [3.2.7 패턴](chapter3/chapter3_2_7.md)
     * [3.2.8 목록](chapter3/chapter3_2_8.md)
     * [3.2.9 맵](chapter3/chapter3_2_9.md)
-    * [3.2.10 null 사용법](chapter3/chapter3_2_10.md)
+    * [3.2.12 null 사용법](chapter3/chapter3_2_12.md)
   * [3.3 절](chapter3/chapter3_3.md)
     * [3.3.1 MATCH](chapter3/chapter3_3_1.md)
     * [3.3.2 OPTIONAL MATCH](chapter3/chapter3_3_2.md)
