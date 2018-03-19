@@ -1,16 +1,16 @@
-# 3.2.9 맵
+# 3.2.11 맵
 
 > Cypher는 맵구조를 완벽하게 지원합니다.
 
-* [맵 문법](#chapter3291)
-* [맵 투영](#chapter3292)
-  * [맵 투영 예제](#chapter32921)
+* [맵 문법](#chapter3211_1)
+* [맵 투영](#chapter3211_2)
+  * [맵 투영 예제](#chapter3211_2_1)
   
 아래의 예제에서 사용할 그래프입니다.
 
 ![](https://neo4j.com/docs/developer-manual/current/images/Maps-1.svg)
   
-## 3.2.9.1 맵 문법 {#chapter3291}
+## 3.2.11.1 맵 문법 {#chapter3211_1}
 
 Cypher에서 맵구조를 만들 수 있습니다. REST를 통해서는 JSON 객체로 가져올 수 있고, Java에서는 `java.util.Map<String,Object>`로 가져올 수 있습니다.
 
@@ -27,7 +27,7 @@ RETURN { key: 'Value', listKey: [{ inner: 'Map1' }, { inner: 'Map2' }]}
 | `{listKey -> [{inner -> "Map1"},{inner -> "Map2"}], key -> "Value"}` |
 | **1 row** |
 
-## 3.2.9.2 맵 투영 {#chapter3292}
+## 3.2.11.2 맵 투영 {#chapter3211_2}
 
 Cypher는 "맵 투영(map projections)"라는 개념을 지원합니다. 이것은 노드, 관계, 그리고 다른 맵을 가지고 쉽게 맵을 구성할 수 있게 합니다.
 
@@ -46,7 +46,7 @@ map_variable {map_element, [, …​n]}
 
 `map_variable`이 `null` 값일 경우에는 투영되는 맵 또한 `null`입니다.
 
-### 맵 투영 예제 {#chapter32921}
+### 맵 투영 예제 {#chapter3211_2_1}
 
 **Charlie Sheen**을 찾고 그와 그가 출현했던 영화에 대한 정보를 반환하겠습니다. 이 예제는 `collect()`라는 집계함수를 통하여 맵이 투영되는 문법 엔트리를 보여줍니다.
 
