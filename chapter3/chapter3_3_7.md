@@ -90,6 +90,25 @@ RETURN n.name, n.age
 
 ### 노드 속성 필터링 {#chapter337_2_3}
 
+노드의 속성을 필터링하려면, `WHERE` 절 이후에 해당 조건을 사용하시면 됩니다.
+
+#### 쿼리
+
+```cypher
+MATCH (n)
+WHERE n.age < 30
+RETURN n.name, n.age
+```
+
+30세 미만이기 때문에 **Tobias** 노드의 이름과 값이 반환됩니다.
+
+#### 쿼리결과
+
+| n.name | n.age |
+| :--- | :--- |
+| `"Tobias"` | `25` |
+| **1 row** ||
+
 ### 관계 속성 필터링 {#chapter337_2_4}
 
 ### 동적 노드 속성 필터링 {#chapter337_2_5}
