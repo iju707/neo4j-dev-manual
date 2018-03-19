@@ -1,13 +1,13 @@
-# 3.2.2 표현식
+# 3.2.3 표현식
 
-* [일반적인 표현식](#chapter3221)
-* [문자 literal 참고](#chapter3222)
-* [`CASE` 표현식](#chapter3223)
-  * [`CASE` 단순형 : 다수의 값을 비교](#chapter32231)
-  * [`CASE` 일반형 : 다수의 조건식을 비교](#chapter32232)
-  * [`CASE`의 단순형과 일반형 사용시기 구분](#chapter32233)
+* [일반적인 표현식](#chapter323_1)
+* [문자 literal 참고](#chapter323_2)
+* [`CASE` 표현식](#chapter323_3)
+  * [`CASE` 단순형 : 다수의 값을 비교](#chapter323_3_1)
+  * [`CASE` 일반형 : 다수의 조건식을 비교](#chapter323_3_2)
+  * [`CASE`의 단순형과 일반형 사용시기 구분](#chapter323_3_3)
 
-## 3.2.2.1 일반적인 표현식 {#chapter3221}
+## 3.2.3.1 일반적인 표현식 {#chapter323_1}
 
 Cypher에서 가능한 표현식 입니다.
 
@@ -30,7 +30,7 @@ Cypher에서 가능한 표현식 입니다.
 * 대소문자 구분 문자열 비교식 : `a.surename START WITH 'Sven'`, `a.surename ENDS WITH 'son'`, `a.surename CONTAINS 'son'`
 * `CASE` 표현식
 
-## 3.2.2.2 문자 literal 참고 {#chapter3222}
+## 3.2.3.2 문자 literal 참고 {#chapter323_2}
 
 문자 literal은 다음과 같은 escape 문자를 포함합니다.
 
@@ -47,7 +47,7 @@ Cypher에서 가능한 표현식 입니다.
 | `\uxxxx` | Unicode UTF-16 code \(`\u` 뒤에 4자리 16진수 포함\) |
 | `\Uxxxxxxxx` | Unicode UTF-32 code \(`\U` 뒤에 8자리 16진수 포함\) |
 
-## 3.2.2.3 `CASE` 표현식 {#chapter3223}
+## 3.2.3.3 `CASE` 표현식 {#chapter323_3}
 
 일반 조건식은 잘 알려진 `CASE`를 활용하여 표현됩니다. Cypher는 2가지 종류의 `CASE` 표현식이 있습니다. 한개의 변수를 다수의 값과 비교하는 단순형, 다수의 조건 표현식을 사용하는 일반형.
 
@@ -55,7 +55,7 @@ Cypher에서 가능한 표현식 입니다.
 
 ![](https://neo4j.com/docs/developer-manual/3.3/images/%60CASE%60%20expressions-1.svg)
 
-### `CASE` 단순형 : 다수의 값을 비교 {#chapter32231}
+### `CASE` 단순형 : 다수의 값을 비교 {#chapter323_3_1}
 
 이 표현식은 `WHEN` 절에서 일치하는 것을 찾을 때까지 순서대로 계산하고 비교합니다. 만약 일치하는 것이 없는 경우 `ELSE` 절에 해당하는 값이 반환됩니다. 그러나 `ELSE` 절이 없는 경우에는 `null`값이 반환됩니다.
 
@@ -102,7 +102,7 @@ ELSE 3 END AS result
 | `1` |
 | 5 행 |
 
-### `CASE` 일반형 : 다수의 조건식을 비교 {#chapter32232}
+### `CASE` 일반형 : 다수의 조건식을 비교 {#chapter323_3_2}
 
 서술부에 작성된 조건식을 순서대로 비교하여 `true` 값이 나오면 해당 결과를 반환합니다. 만약 `true`에 해당하는 조건식이 없는 경우에는 `ELSE` 절의 값이 반환됩니다. 그러나 `ELSE` 절이 없는 경우에는 `null`값이 반환됩니다.
 
@@ -148,7 +148,7 @@ ELSE 3 END AS result
 | `1` |
 | 5 행 |
 
-### `CASE`의 단순형과 일반형 사용시기 구분 {#chapter32233}
+### `CASE`의 단순형과 일반형 사용시기 구분 {#chapter323_3_3}
 
 두가지 유형이 거의 유사하기 때문에 가끔은 어떤 유형을 사용하여 쿼리를 작성해야하는지 혼동스러울 때가 있습니다. `age_10_years_ago`라는 이름의 10년전 나이를 계산하되 `n.age`가 `null`일 경우 `-1`이 반환되는 시나리오를 가지고 어떤 유형을 사용해야하는지 알아보겠습니다. 
 
