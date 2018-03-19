@@ -1,20 +1,20 @@
-# 3.2.4 파라미터
+# 3.2.6 파라미터
 
-* [소개](#chapter3241)
-* [문자 literal](#chapter3242)
-* [정규식](#chapter3243)
-* [대소문자구분 문자열 비교](#chapter3244)
-* [속성포함 노드 생성](#chapter3245)
-* [속성포함 다수 노드 생성](#chapter3246)
-* [노드의 모든 속성 설정](#chapter3247)
-* [`SKIP`과 `LIMIT`](#chapter3248)
-* [노드 Id](#chapter3249)
-* [다수의 노드 Id](#chapter32410)
-* [프로시져 호출](#chapter32411)
-* [인덱스 값(특정 인덱스 지칭)](#chapter32412)
-* [인덱스 쿼리(특정 인덱스 지칭)](#chapter32413)
+* [소개](#chapter326_1)
+* [문자 literal](#chapter326_2)
+* [정규식](#chapter326_3)
+* [대소문자구분 문자열 비교](#chapter326_4)
+* [속성포함 노드 생성](#chapter326_5)
+* [속성포함 다수 노드 생성](#chapter326_6)
+* [노드의 모든 속성 설정](#chapter326_7)
+* [`SKIP`과 `LIMIT`](#chapter326_8)
+* [노드 Id](#chapter326_9)
+* [다수의 노드 Id](#chapter326_10)
+* [프로시져 호출](#chapter326_11)
+* [인덱스 값(특정 인덱스 지칭)](#chapter326_12)
+* [인덱스 쿼리(특정 인덱스 지칭)](#chapter326_13)
 
-## 3.2.4.1 소개 {#chapter3241}
+## 3.2.6.1 소개 {#chapter326_1}
 
 Cypher는 쿼리에 파라미터를 지원합니다. 이 의미는 개발자가 원하는 쿼리를 만들기 위해 문자열생성 작업을 하지 않아도 됩니다. 또한, 파라미터는 Cypher에게 실행 계획을 캐싱할 수 있도록 도와줘서 쿼리 실행시간이 더 빨라지도록 합니다.
 
@@ -36,7 +36,7 @@ Neo4j REST API에서의 파라미터 사용법은 [5.1 트랜잭션 Cypher HTTP 
 
 > 파라미터를 사용할 때 기존 문법(추후에 삭제될 예정)인 `{param}`이 아닌 신규 문법인 `$param` 방식을 사용하길 권장합니다.
 
-## 3.2.4.2 문자 literal {#chapter3242}
+## 3.2.6.2 문자 literal {#chapter326_2}
 
 ### 파라미터
 
@@ -71,7 +71,7 @@ MATCH (n:Person { name: $name })
 RETURN n
 ```
 
-## 3.2.4.3 정규식 {#chapter3243}
+## 3.2.6.3 정규식 {#chapter326_3}
 
 ### 파라미터
 
@@ -89,7 +89,7 @@ WHERE n.name =~ $regex
 RETURN n.name
 ```
 
-## 3.2.4.4 대소문자구분 문자열 비교 {#chapter3244}
+## 3.2.6.4 대소문자구분 문자열 비교 {#chapter326_4}
 
 ### 파라미터
 
@@ -107,7 +107,7 @@ WHERE n.name STARTS WITH $name
 RETURN n.name
 ```
 
-## 3.2.4.5 속성포함 노드 생성 {#chapter3245}
+## 3.2.6.5 속성포함 노드 생성 {#chapter326_5}
 
 ### 파라미터
 
@@ -126,7 +126,7 @@ RETURN n.name
 CREATE ($props)
 ```
 
-## 3.2.4.6 속성포함 다수 노드 생성 {#chapter3246}
+## 3.2.6.6 속성포함 다수 노드 생성 {#chapter326_6}
 
 ### 파라미터
 
@@ -153,7 +153,7 @@ SET n = properties
 RETURN n
 ```
 
-## 3.2.4.7 노드의 모든 속성 설정 {#chapter3247}
+## 3.2.6.7 노드의 모든 속성 설정 {#chapter326_7}
 
 이것은 현재 속성을 모두 대체할 것 입니다.
 
@@ -176,7 +176,7 @@ WHERE n.name='Michaela'
 SET n = $props
 ```
 
-## 3.2.4.8 `SKIP`과 `LIMIT` {#chapter3248}
+## 3.2.6.8 `SKIP`과 `LIMIT` {#chapter326_8}
 
 ### 파라미터
 
@@ -196,7 +196,7 @@ SKIP $s
 LIMIT $l
 ```
 
-## 3.2.4.9 노드 Id {#chapter3249}
+## 3.2.6.9 노드 Id {#chapter326_9}
 
 ### 파라미터
 
@@ -214,7 +214,7 @@ WHERE id(n)= $id
 RETURN n.name
 ```
 
-## 3.2.4.10 다수의 노드 Id {#chapter32410}
+## 3.2.6.10 다수의 노드 Id {#chapter326_10}
 
 ### 파라미터
 
@@ -232,7 +232,7 @@ WHERE id(n) IN $ids
 RETURN n.name
 ```
 
-## 3.2.4.11 프로시져 호출 {#chapter32411}
+## 3.2.6.11 프로시져 호출 {#chapter326_11}
 
 ### 파라미터
 
@@ -248,7 +248,7 @@ RETURN n.name
 CALL db.resampleIndex($indexname)
 ```
 
-## 3.2.4.12 인덱스 값 (특정 인덱스 지칭) {#chapter32412}
+## 3.2.6.12 인덱스 값 (특정 인덱스 지칭) {#chapter326_12}
 
 ### 파라미터
 
@@ -265,7 +265,7 @@ START n=node:people(name = $value)
 RETURN n
 ```
 
-## 3.2.4.13 인덱스 쿼리 (특정 인덱스 지칭) {#chapter32413}
+## 3.2.6.13 인덱스 쿼리 (특정 인덱스 지칭) {#chapter326_13}
 
 ### 파라미터
 
