@@ -14,7 +14,7 @@
     * [3.2.2 명명규칙과 추천](chapter3/chapter3_2_2.md)
     * [3.2.3 표현식](chapter3/chapter3_2_3.md)
     * [3.2.4 변수](chapter3/chapter3_2_4.md)
-    * [3.2.2 예약어](chapter3/chapter3_2_2.md)
+    * [3.2.5 예약어](chapter3/chapter3_2_5.md)
     * [3.2.6 파라미터](chapter3/chapter3_2_6.md)
     * [3.2.7 연산자](chapter3/chapter3_2_7.md)
     * [3.2.8 주석](chapter3/chapter3_2_8.md)
