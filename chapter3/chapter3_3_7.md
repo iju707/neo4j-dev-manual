@@ -48,9 +48,45 @@
 
 ### 부울 연산자 {#chapter337_2_1}
 
-`AND`, `OR`, `XOR`, `NOT`과 같은 부울 연산자를 사용할 수 있습니다. [3.2.12 
+`AND`, `OR`, `XOR`, `NOT`과 같은 부울 연산자를 사용할 수 있습니다. `null`과 함께 처리하는 방법은 [3.2.12 null 사용법](/chapter3/chapter3_2_12.md)을 참고하시기 바랍니다.
+
+#### 쿼리
+
+```cypher
+MATCH (n)
+WHERE n.name = 'Peter' XOR (n.age < 30 AND n.name = 'Tobias') OR NOT (n.name = 'Tobias' OR n.name = 'Peter')
+RETURN n.name, n.age
+```
+
+#### 쿼리결과
+
+| n.name | n.age |
+| :--- | :--- |
+| `"Andres"` | `36` |
+| `"Tobias"` | `25` |
+| `"Peter"` | `35` |
+| **3 rows** ||
 
 ### 노드 라벨 필터링 {#chapter337_2_2}
+
+노드를 라벨로 필터링하기 위해서는 `WHERE` 절에 `WHERE n:foo`와 같은 방법으로 라벨 제약조건을 사용하시면 됩니다.
+
+#### 쿼리
+
+```cypher
+MATCH (n)
+WHERE n:Swedish
+RETURN n.name, n.age
+```
+
+**Swedish**라는 라벨을 가진 노드의 이름과 나이가 반환됩니다.
+
+#### 쿼리결과
+
+| n.name | n.age |
+| :--- | :--- |
+| `"Andres"` | `36` |
+| **1 row** ||
 
 ### 노드 속성 필터링 {#chapter337_2_3}
 
