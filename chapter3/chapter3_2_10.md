@@ -1,12 +1,12 @@
-# 3.2.8 목록
+# 3.2.10 목록
 
 > Cypher는 전반적으로 목록을 제공합니다.
 
-* [일반적인 목록](#chapter3281)
-* [목록으로부터 목록생성](#chapter3282)
-* [경로로부터 목록생성](#chapter3283)
+* [일반적인 목록](#chapter3210_1)
+* [목록으로부터 목록생성](#chapter3210_2)
+* [경로로부터 목록생성](#chapter3210_3)
 
-## 일반적인 목록 {#chapter3281}
+## 일반적인 목록 {#chapter3210_1}
 
 일반적인 목록은 대괄호와 쉼표로 구분되는 항목을 사용하여 표현됩니다.
 
@@ -152,7 +152,7 @@ RETURN size(range(0, 10)[0..3])
 | `3` |
 | **1 row** |
 
-## 목록으로부터 목록생성(List comprehension) {#chapter3282}
+## 3.2.10.2 목록으로부터 목록생성(List comprehension) {#chapter3210_2}
 
 List comprehension는 Cypher에서 기존의 목록을 기반으로 새로운 목록을 생성할 수 있게 하는 구문구조 입니다. 맵이나 필터함수를 사용하지 않고 수학적 설정구성 표기법으로 구성됩니다.
 
@@ -197,7 +197,7 @@ RETURN [x IN range(0,10)| x^3] AS result
 | `[0.0,1.0,8.0,27.0,64.0,125.0,216.0,343.0,512.0,729.0,1000.0]` |
 | **1 row** |
 
-## 경로로부터 목록생성(Pattern comprehension) {#chapter3283}
+## 3.2.10.3 경로로부터 목록생성(Pattern comprehension) {#chapter3210_3}
 
 Pattern comprehension는 Cypher에서 패턴 매칭을 통해 새로운 목록을 생성할 수 있게 하는 구문구조 입니다. 일반적인 `MATCH`절과 `WHERE`절을 사용하여 매칭을 한 뒤 원하는 방식의 결과출력문을 사용합니다.
 
