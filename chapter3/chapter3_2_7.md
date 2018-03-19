@@ -1,186 +1,415 @@
-# 3.2.7 패턴
+# 3.2.5 연산자
 
-* [소개](#chapter3271)
-* [노드의 패턴](#chapter3272)
-* [관련된 노드들의 패턴](#chapter3273)
-* [라벨의 패턴](#chapter3274)
-* [속성 지정](#chapter3275)
-* [관계 패턴](#chapter3276)
-* [가변길이 패턴 매칭](#chapter3277)
-* [경로 변수 지정](#chapter3278)
+* [연산자 개요](#chapter3251)
+* [일반적 연산자](#chapter3252)
+  * [`DISTINCT` 연산자 사용하기](#chapter3252_1)
+  * [맵구조에서 `.`을 사용하여 속성접근하기](#chapter3252_2)
+  * [`[]`연산자를 사용하여 동적으로 속성키를 필터링하기](#chapter3252_3)
+* [수학적 연산자](#chapter3253)
+  * [누승 연산자 `^` 사용하기](#chapter3253_1)
+  * [단항 음수 연산자 `-` 사용하기](#chapter3253_2)
+* [비교 연산자](#chatper3254)
+  * [두개의 숫자 비교](#chapter3254_2)
+  * [이름 필터를 위한 `STARTS WITH` 연산자](#chapter3254_3)
+* [Boolean 연산자](#chapter3255)
+  * [숫자 필터를 위한 Boolean 연산자](#chapter3255_1)
+* [문자열 연산자](#chapter3256)
+  * [단어 필터를 위한 정규식 `=~` 연산자](#chapter3256_1)
+* [목록 연산자](#chapter3257)
+  * [`+` 연산자를 사용하여 목록 연결하기](#chapter3257_1)
+  * [`IN` 연산자를 사용하여 목록에 숫자 존재여부 확인](#chapter3257_2)
+  * [`[]` 연산자를 사용하여 목록의 항목에 접근하기](#chapter3257_3)
+* [속성 연산자](#chapter3258)
+* [값의 동등 비교](#chapter3259)
+* [값의 순서 비교](#chapter32510)
+* [비교 연산자 연결](#chapter32511)
 
-## 소개 {#chapter3271}
-  
-## 노드의 패턴 {#chapter3272}
+## 3.2.5.1 연산자 개요 {#chapter3251}
 
-가장 단순한 형태로 표현되는 패턴이 노드입니다. 노드는 괄호를 사용하여 표현할 수 있으며 원하는 이름을 지정할 수 있습니다.
+| 연산자 | 종류 |
+| :--- | :--- |
+| [일반적 연산자](#chapter3252) | `DISTINCT`, 속성접근을 위한 `.`, 동적 속성접근을 위한 `[]` |
+| [수학적 연산자](#chapter3253) | `+`, `-`, `*`, `/`, `%`, `^` |
+| [비교 연산자](#chatper3254) | `=`, `<>`, `<`, `>`, `<=`, `>=`, `IS NULL`, `IS NOT NULL` |
+| [문자특화 비교 연산자](#chapter3254_1) | `STARTS WITH`, `ENDS WITH`, `CONTAINS` |
+| [Boolean 연산자](#chapter3255) | `AND`, `OR`, `XOR`, `NOT` |
+| [문자열 연산자](#chapter3256) | 연결을 위한 `+`, 정규식을 위한 `=~` |
+| [목록 연산자](#chapter3257) | 연결을 위한 `+`, 항목 존재여부 확인을 위한 `IN`, 항목접근을 위한 `[]` |
 
-```cypher
-(a)
-```
+## 3.2.5.2 일반적 연산자 {#chapter3252}
 
-## 관련된 노드들의 패턴 {#chapter3273}
+일반적 연산자는 다음과 같습니다.
 
-보다 강력한 구조를 가진 패턴은 다수의 노드와 관계를 표현하는 것 입니다. Cypher 패턴에서 관계는 두개의 노드 간에 화살표를 가지고 표현합니다.
+* 값의 중복제거 : `DISTINCT`
+* 노드, 관계, 맵구조체의 속성에 접근하는 `.` 연산자
+* 동적 속성접근에 사용되는 `[]` 연산자
 
-```cypher
-(a)-->(b)
-```
+### `DISTINCT` 연산자 사용하기 {#chapter3252_1}
 
-위 패턴은 가장 단순한 데이터를 표현합니다. 2개 노드, 하나에서 다른것으로 연결되는 1개의 관계. 이 예제에서 두개의 노드는 `a`와 `b`의 이름을 가지고 있으며, 관계는 `a`에서 `b`로 연결되는 방향성을 가지게 됩니다.
+`Person` 노드의 눈동자 색의 종류를 찾아보겠습니다.
 
-이러한 노드와 관계에 대한 표현은 임의의 숫자에 해당하는 노드와 관계에 대한 표현으로 확장이 가능합니다.
-
-```cypher
-(a)-->(b)<--(c)
-```
-
-이러한 연결된 노드와 관계를 가지고 "경로(path)"라고 부릅니다.
-
-노드에 대한 이름은 동일한 노드에 대하여 Cypher 쿼리 다른 부분에서 참조가 있을 때만 이름을 지정하시면 됩니다. 만약 불필요할 경우에는 이름을 다음과 같이 생략하시면 됩니다.
-
-```cypher
-(a)-->()<--(c)
-```
-
-## 라벨의 패턴 {#chapter3274}
-
-패턴중 가장 단순한 형태의 노드 이외에 속성도 간단히 표현할 수 있습니다. 그중 노드에 필수적인 라벨에 대한 것을 보겠습니다.
-
-```cypher
-(a:user)-->(b)
-```
-
-여러개의 라벨을 가지고 있으면 다음과 같이 표현됩니다.
+#### 쿼리
 
 ```cypher
-(a:user:Admin)-->(b)
+CREATE (a:Person { name: 'Anne', eyeColor: 'blue' }),(b:Person { name: 'Bill', eyeColor: 'brown' }),(c:Person { name: 'Carol', eyeColor: 'blue' })
+WITH [a, b, c] AS ps
+UNWIND ps AS p
+RETURN DISTINCT p.eyeColor
 ```
 
-## 속성 지정 {#chapter3275}
+**Anne**와 **Carol**이 똑같은 파란색 눈을 가지고 있기 때문에 **blue**는 한번만 반환됩니다.
 
-노드와 관계는 그래프의 기본 구조입니다. Neo4j에서는 좀더 풍부한 모델을 제공하기 위하여 두가지 모두 속성정보를 제공합니다.
+#### 쿼리결과
 
-속성은 맵과 같은 구조의 패턴으로 표현될 수 있습니다. 중괄호로 둘러싸인 다수의 키-값 쌍을 쉼표로 구분하여 표현합니다. 만약 노드가 2가지의 속성을 가지고 있으면 다음과 같습니다.
-
-```cypher
-(a {name: 'Andres', sport: 'Brazilian Ju-Jitsu'})
-```
-
-관계가 속성을 가질 경우에는 다음과 같습니다.
-
-```cypher
-(a)-[{blocked: false}]->(b)
-```
-
-패턴에 속성들이 보이게 되면, 데이터에 제약조건을 추가하는 것 입니다. CREATE 절에서는 새로 생성되는 노드나 관계에 설정할 속성이 됩니다. MERGE 절에서는 기존 데이터가 가지고 있어야될 추가적인 제약조건(그래프의 존재하는 데이터 중 정확히 일치할 특정 속성)으로 표현됩니다. 만약 일치하는 데이터가 없을 경우 MERGE는 CREATE절과 동일하게 새로 생성하는 노드나 관계에 설정될 속성으로 사용합니다.
-
-CREATE절에서는 특정한 속성들을 한개의 파라미터로 사용할 수 있습니다. (예 : `CREATE (node $paramName)`) 이 패턴을 다른 절에서는 사용할 수 없습니다. Cypher는 매칭을 좀더 효율적으로 하기 위하여 쿼리를 컴파일할 때 속성에 대한 이름을 알아야 하기 때문입니다.
-
-## 관계 패턴 {#chapter3276}
-
-관계를 가장 단순하게 표현하는 것은 이전 예제에서 소개한 것과 같이 2개의 노드간에 화살표로 표시하는 것 입니다. 이 방법을 이용하면 관계가 있는지, 어떤 방향성을 가지고 있는지 표현할 수 있습니다. 만약 관계에 대한 방향을 고려하지 않는다면, 화살표 방향을 생략하시면 됩니다.
-
-```cypher
-(a)--(b)
-```
-
-노드처럼 관계도 이름을 지정할 수 있습니다. 이 경우에는 화살표 가운데에 대괄호를 추가하고 이름을 지정하시면 됩니다.
-
-```cypher
-(a)-[r]->(b)
-```
-
-노드의 라벨과 유사하게 관계도 타입을 가지게 됩니다. 관계에 대한 타입을 표현할 경우에는 아래와 같이 하시면 됩니다.
-
-```cypher
-(a)-[r:REL_TYPE]->(b)
-```
-
-라벨과는 다르게 관계는 한개의 타입만 가질 수 있습니다. 다만, 여러가지 타입 중 한가지를 관계로 가지는 데이터를 표현할 때 `|` 파이프로 타입을 분리하여 목록화 하는 패턴으로 표현할 수 있습니다.
-
-```cypher
-(a)-[r:TYPE1|TYPE2]->(b)
-```
-
-위의 패턴은 기존 데이터에 대한 것만 표현할 수 있습니다.(예, MATCH 절 또는 표현식을 사용하는 패턴) 그래서 CREATE나 MERGE 절에서는 다수의 타입을 가지는 관계를 생성할 수 없기 때문에 사용할 수 없습니다.
-
-노드와 같이 관계의 이름도 필요에 따라 생략할 수 있습니다.
-
-```cypher
-(a)-[:REL_TYPE]->(b)
-```
-
-## 가변길이 패턴 매칭 {#chapter3277}
-
-긴 경로를 다수의 노드와 관계를 가지고 패턴에 표현하는 것보다는 다수의 관계(와 중간 경로에 있는 노드들)를 관계에 대한 길이로 표현하는 패턴이 있습니다.
-
-```cypher
-(a)-[*2]->(b)
-```
-
-이것은 3개의 노드와 2개의 관계에 대한 길이가 2인 경로를 표현한 것 입니다. 아래와 동일한 의미입니다.
-
-```cypher
-(a)-->()-->(b)
-```
-
-경로의 길이에 대한 범위 또한 지정 가능합니다. 이러한 관계 패턴을 '가변 길이 관계(variable length relationships)'라고 합니다.
-
-```cypher
-(a)-[*3..5]->(b)
-```
-
-이것은 최소 3, 최대 5의 길이를 가지게 됩니다. 그럼 모든 것이 한개의 경로에 연결된 4노드/3관계, 5노드/4관계, 6노드/5관계를 표현할 수 있습니다. 
-
-범위중 한쪽은 생략이 가능합니다. 만약 3 이상의 길이를 가진 경로가 필요한 경우에는 다음과 같습니다.
-
-```cypher
-(a)-[*3..]->(b)
-```
-
-5 이하의 경로는 다음과 같습니다.
-
-```cypher
-(a)-[*..5]->(b)
-```
-
-양쪽 범위 또한 생략이 가능합니다. 이것은 모든 길이의 경로를 포함하는 것 입니다.
-
-```cypher
-(a)-[*]->(b)
-```
-
-아래의 간단한 그래프를 가지고 예를 들어보겠습니다.
-
-![](https://neo4j.com/docs/developer-manual/current/images/Patterns-1.svg)
-
-### 쿼리
-
-```cypher
-MATCH (me)-[:KNOWS*1..2]-(remote_friend)
-WHERE me.name = 'Filipa'
-RETURN remote_friend.name
-```
-
-### 쿼리결과
-
-| remote_friend.name |
+| p.eyeColor |
 | :--- |
-| `"Dilshad"` |
-| `"Anders"` |
+| `"blue"` |
+| `"brown"` |
+| **2 rows Nodes created: 3 Properties set: 6 Labels added: 3** |
+
+`DISTINCT` 연산자는 일반적으로 [집계 함수](/chapter3/chapter3_4_3.md)와 함께 사용됩니다.
+
+### 맵구조에서 `.`을 사용하여 속성접근하기 {#chapter3252_2}
+
+#### 쿼리
+
+```cypher
+WITH { person: { name: 'Anne', age: 25 }} AS p
+RETURN p.person.name
+```
+
+#### 쿼리결과
+
+| p.person.name |
+| :--- |
+| `"Anne"` |
+| ** 1 row ** |
+
+### `[]`연산자를 사용하여 동적으로 속성키를 필터링하기 {#chapter3252_3}
+
+#### 쿼리
+
+```cypher
+CREATE (a:Restaurant { name: 'Hungry Jo', rating_hygiene: 10, rating_food: 7 }),(b:Restaurant { name: 'Buttercup Tea Rooms', rating_hygiene: 5, rating_food: 6 }),(c1:Category { name: 'hygiene' }),(c2:Category { name: 'food' })
+WITH a, b, c1, c2
+MATCH (restaurant:Restaurant),(category:Category)
+WHERE restaurant["rating_" + category.name]> 6
+RETURN DISTINCT restaurant.name
+```
+
+#### 쿼리결과
+
+| restaurant.name |
+| :--- |
+| `"Hungry Jo"` |
+| **1 row Nodes created: 4 Properties set: 8 Labels added: 4** |
+
+동적 속성접근에 대하여 자세한 내용은 [3.3.7.2 기본적 사용법](/chapter3/chapter3_3_7.md#chapter3372)를 보시기 바랍니다.
+
+### 3.2.5.3 수학적 연산자 {#chapter3253}
+
+수학적 연산자는 다음과 같습니다.
+
+* 더하기 : `+`
+* 빼기 또는 단항 음수 : `-`
+* 곱하기 : `*`
+* 나누기 : `/`
+* 나머지 : `%`
+* 지수화 : `^`
+
+#### 누승 연산자 `^` 사용하기 {#chapter3253_1}
+
+##### 쿼리
+
+```cypher
+WITH 2 AS number, 3 AS exponent
+RETURN number ^ exponent AS result
+```
+
+##### 결과
+
+| result |
+| :--- |
+| `8.0` |
+| **1 row** |
+
+#### 단항 음수 연산자 `-` 사용하기 {#chapter3253_2}
+
+##### 쿼리
+
+```cypher
+WITH -3 AS a, 4 AS b
+RETURN b - a AS result
+```
+
+##### 쿼리결과
+
+| result |
+| :--- |
+| `7` |
+| **1 row** |
+
+### 3.2.5.4 비교 연산자 {#chapter3254}
+
+비교 연산자는 다음과 같습니다.
+
+* 같다 : `=`
+* 다르다 : `<>`
+* 작다 : `<`
+* 크다 : `>`
+* 작거나 같다 : `<=`
+* 크거나 같다 : `>=`
+* `IS NULL`
+* `IS NOT NULL`
+
+#### 문자특화 비교 연산자 {#chapter3254_1}
+
+* `STARTS WITH` : 문자열에서 대소문자 구분해서 시작부분부터 비교
+* `ENDS WITH` : 문자열에서 대소문자 구분해서 끝부분 부터 비교
+* `CONTAINS` : 문자열에서 대소문자 구분해서 포함하는지 비교
+
+#### 두개의 숫자 비교 {#chapter3254_2}
+
+##### 쿼리
+
+```cypher
+WITH 4 AS one, 3 AS two
+RETURN one > two AS result
+```
+
+##### 쿼리결과
+
+| result |
+| :--- |
+| `true` |
+| **1 row** |
+
+비교 연산자에 대한 상세한 동작은 [3.2.5.9 값의 동등 비교](#chapter3259)를 참고하시기 바랍니다. 더 많은 예시는 [3.3.7.8 범위 사용](/chapter3/chapter3_3_7.md#chapter3378)을 참고하시기 바랍니다.
+
+#### 이름 필터를 위한 `STARTS WITH` 연산자 {#chapter3254_3}
+
+##### 쿼리
+
+```cypher
+WITH ['John', 'Mark', 'Jonathan', 'Bill'] AS somenames
+UNWIND somenames AS names
+WITH names AS candidate
+WHERE candidate STARTS WITH 'Jo'
+RETURN candidate
+```
+
+##### 쿼리결과
+
+| candidate |
+| :--- |
+| `"John"` |
+| `"Jonathan"` |
 | **2 rows** |
 
-이 쿼리는 그래프에서 다음의 조건을 충족하는 데이터를 찾는 것 입니다. name 속성이 "Filipa"인 특정 노드에서 KNOWS 관계를 1 ~ 2 길이의 경로를 가진 노드들. 이것은 1차와 2차 친구들을 찾는 일반적인 예제입니다.
+문자열에 특화된 비교 연산자를 사용한 다양한 예제와 함께 자세한 정보는 [3.3.7.3 문자열 매칭](/chapter3/chapter3_3_7.md#chapter3373)을 참고하시기 바랍니다.
 
-가변길이관계는 `CREATE`절이나 `MERGE`절에서는 사용할 수 없습니다.
+### 3.2.5.5 Boolean 연산자
 
-## 경로 변수 지정 {#chapter3278}
+논리연산자로 잘 알려진 Boolean 연산자는 다음과 같습니다.
 
-노드와 관계에 대한 연결된 정보를 "경로(path)"라고 부릅니다. Cypher에서는 경로에 대한 이름을 지정할 수 있게 합니다.
+* `AND`
+* `OR`
+* `XOR`
+* `NOT`
+
+`AND`, `OR`, `XOR`, `NOT`에 대한 참거짓표 입니다.
+
+| a | b | a `AND` b | a `OR` b | a `XOR` b | `NOT` a |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `false` | `false` | `false` | `false` | `false` | `true` |
+| `false` | `null` | `false` | `null` | `null` | `true` |
+| `false` | `true` | `false` | `true` | `true` | `true` |
+| `true` | `false` | `false` | `true` | `true` | `false` |
+| `true` | `null` | `null` | `true` | `null` | `false` |
+| `true` | `true` | `true` | `true` | `false` | `false` |
+| `null` | `false` | `false` | `null` | `null` | `null` |
+| `null` | `null` | `null` | `null` | `null` | `null` |
+| `null` | `true` | `null` | `true` | `null` | `null` |
+
+#### 숫자 필터를 위한 Boolean 연산자 {#chapter3255_1}
+
+##### 쿼리
 
 ```cypher
-p = (a)-[*3..5]->(b)
+WITH [2, 4, 7, 9, 12] AS numberlist
+UNWIND numberlist AS number
+WITH number
+WHERE number = 4 OR (number > 6 AND number < 10)
+RETURN number
 ```
 
-`MATCH`, `CREATE`, `MERGE`에서 사용할 수 있지만, 표현식으로는 사용할 수 없습니다.
+##### 쿼리결과
+
+| number |
+| :--- |
+| `4` |
+| `7` |
+| `9` |
+| **9 rows** |
+
+### 3.2.5.6 문자열 연산자 {#chapter3256}
+
+문자열 연산자는 다음과 같습니다.
+
+* 문자열 연결 : `+`
+* 정규식 비교 : `=~`
+
+#### 단어 필터를 위한 정규식 `=~` 연산자 {#chapter3256_1}
+
+##### 쿼리
+
+```cypher
+WITH ['mouse', 'chair', 'door', 'house'] AS wordlist
+UNWIND wordlist AS word
+WITH word
+WHERE word =~ '.*ous.*'
+RETURN word
+```
+
+##### 쿼리결과
+
+| word |
+| :--- |
+| `"mouse"` |
+| `"house"` |
+| **2 rows** |
+
+정규식을 이용하여 필터링하는 방법에 대한 더 자세한 내용과 예제는 [3.3.7.4 정규식 표현](/chapter3/chapter3_3_7.md#chapter3374)를 참고 하시기 바랍니다. 추가로 문자열 비교에 관련된 내용은 [문자특화 비교 연산자](#chapter3254_1)를 참고 하시기 바랍니다.
+
+### 3.2.5.7 목록 연산자 {chapter3257}
+
+목록 연산자는 다음과 같습니다.
+
+* 목록 연결하기 : `+`
+* 목록에 숫자 존재여부 확인 : `IN`
+* 목록의 항목에 접근하기 : `[]`
+
+#### `+` 연산자를 사용하여 목록 연결하기 {#chapter3257_1}
+
+##### 쿼리
+
+```cypher
+RETURN [1,2,3,4,5]+[6,7] AS myList
+```
+
+##### 쿼리결과
+
+| myList |
+| :--- |
+| `[1,2,3,4,5,6,7]` |
+| **1 row** |
+
+#### `IN` 연산자를 사용하여 목록에 숫자 존재여부 확인 {#chapter3257_2}
+
+##### 쿼리
+
+```cypher
+WITH [2, 3, 4, 5] AS numberlist
+UNWIND numberlist AS number
+WITH number
+WHERE number IN [2, 3, 8]
+RETURN number
+```
+
+##### 쿼리결과
+
+| number |
+| :--- |
+| `2` |
+| `3` |
+| **2 rows** |
+
+#### `[]` 연산자를 사용하여 목록의 항목에 접근하기 {#chapter3257_3}
+
+##### 쿼리
+
+```cypher
+WITH ['Anne', 'John', 'Bill', 'Diane', 'Eve'] AS names
+RETURN names[1..3] AS result
+```
+
+대괄호는 목록에서 인덱스 `1`부터 인덱스 `3`까지(제외됨) 항목을 추출하게 됩니다. 
+
+##### 쿼리결과
+
+| result |
+| :--- |
+| `["John", "Bill"]` |
+| **1 row** |
+
+### 3.2.5.8 속성 연산자 {#chapter3258}
+
+> 버전 2.0 이후, 기존에 지원한 속성 연산자 `?`와 `!`는 삭제되었습니다. 더 이상 지원되지 않습니다. 없는 속성의 경우 `null`을 반환할 것 입니다. 만약 기존의 `?` 연산자 작업이 필요한 경우에는 `(NOT(exists(<ident>.prop)) OR <ident>.prop=<value>)`를 사용하시면 됩니다. 또한 선택적 관계에 활용된 `?` 연산자도 삭제되었으며 `OPTIONAL MATCH`절을 활용하시면 됩니다.
+
+### 값의 동등 비교 {#chapter3259}
+
+#### 동등
+
+Cypher는 값([3.2.1 값과 유형](/chapter3/chapter3_2_1.md) 참고)에 대한 동등을 비교하는 것을 `=`와 `<>`연산자를 사용하여 지원합니다.
+
+동일한 타입의 값에 대해서만 동일한 값일 경우 동등으로 취급됩니다. (예, `3 =3` 또는 `"x" <> "xy"`)
+
+맵의 경우에는 동일한 키에 대한 동일한 값을 가진 경우, 목록의 경우에는 동일한 순서로 동일한 값을 가진 경우 동등으로 취급됩니다. (예, `[3, 4] = [1+2, 8/2]`)
+
+다른 타입의 값에 대해서는 다음 규칙에 따라 동등으로 취급됩니다.
+
+* 경로의 경우 선택되어지는 노드와 관계에 대한 목록으로 처리됩니다. 그래서 동일한 순서로 노드와 관계가 같을 경우 동등으로 취급됩니다.
+* 어떤 값이던 `null`과 함께 `=`와 `<>`로 동등비교 할 경우 결과는 `null`입니다. `null = null`과 `null <> null`도 포함됩니다. `v`에 대한 값이 `null`인지 동등비교하고자 할 경우에는 `v IS NULL`이나 `v IS NOT NULL`을 사용하시면 됩니다.
+
+다른 타입의 값 조합은 서로 비교할 수 없습니다. 특히 노드, 관계, literal map은 서로 비교할 수 없습니다.
+
+비교할 수 없는 값을 비교할 경우 오류가 발생합니다.
+
+### 값의 순서 비교 {#chapter32510}
+
+비교연산자 `<=`, `<` (오름차순) 또는 `>=`, `>` (내림차순)을 사용하여 값의 순서를 비교할 수 있습니다. 아래 비교가 어떻게 수행되는지 자세한 내용입니다.
+
+* 수치값은 수치적 순서에 따라 비교가 됩니다. (예, `3 < 4`는 참)
+* 특수한 값인 `java.lang.Double.NaN`는 다른 모든 숫자보다 가장 큰 값으로 취급합니다.
+* 문자열 값은 사전 순서로 비교합니다. (예, `"x" < "xy")
+* Boolean 값은 `false < true` 순서를 가집니다.
+* 한쪽이 `null`일 경우 순서 비교는 `null`입니다. (예, `null < 3`은 `null`)
+* 서로 다른 타입에 대한 값에 순서를 비교할 경우 오류가 발생합니다. 
+
+### 비교 연산자 연결 {#chapter32511}
+
+비교 연산자는 연결하여 사용할 수 있습니다. 예로 `x < y <= z`는 `x < y AND y <= z`와 동일합니다.
+
+일반적으로, `a, b, c ..., y, z`의 값을 `op1, op2, ..., opN`의 연산자로 비교할 경우 `a op1 b op2 ... y opN z`는 `a op1 b and b op2 c and ... y opN z`와 동일합니다.
+
+`a op1 b op2 c`에서 `a`와 `c`간의 비교는 하지 않습니다. 그렇기 때문에 `x < y > z`또한 성립됩니다.
+
+예를 들어,
+
+```cypher
+MATCH (n) WHERE 21 < n.age <= 30 RETURN n
+```
+
+는 다음과 같습니다.
+
+```cypher
+MATCH (n) WHERE 21 < n.age AND n.age <= 30 RETURN n
+```
+
+이것은 나이가 21에서 30세인 모든 노드를 매칭하게 될 것 입니다.
+
+이 문법은 모든 동등/상이 비교를 3개 이상으로 확장할 수 있습니다.
+
+예를 들어,
+
+```cypher
+a < b = c <= d <> e
+```
+
+는 다음과 같습니다.
+
+```cypher
+a < b AND b = c AND c <= d AND d <> e
+```
+
+다른 비교 연산자는 [3.2.5.4 비교 연산자](#chapter3254)를 참고하시기 바랍니다.
