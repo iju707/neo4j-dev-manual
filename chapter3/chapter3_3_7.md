@@ -111,9 +111,69 @@ RETURN n.name, n.age
 
 ### 관계 속성 필터링 {#chapter337_2_4}
 
+관계의 속성을 필터링하려면, `WHERE` 절 이후에 해당 조건을 사용하시면 됩니다.
+
+#### 쿼리
+
+```cypher
+MATCH (n)-[k:KNOWS]->(f)
+WHERE k.since < 2000
+RETURN f.name, f.age, f.email
+```
+
+**Andres**가 2000년 이전부터 알았기 때문에, **Peter** 노드의 이름, 나이, 이메일 정보가 반환됩니다.
+
+#### 쿼리결과
+
+| f.name | f.age | f.email |
+| :--- | :--- | :--- |
+| `"Peter"` | `35` | `"peter_n@example.com"` |
+| **1 row** |||
+
 ### 동적 노드 속성 필터링 {#chapter337_2_5}
 
+동적으로 생성된 이름으로 속성을 필터링하려면, 대괄호 문법을 사용하면 됩니다.
+
+#### 쿼리
+
+```cypher
+WITH 'AGE' AS propname
+MATCH (n)
+WHERE n[toLower(propname)]< 30
+RETURN n.name, n.age
+```
+
+30세 미만이기 때문에 **Tobias**의 이름 나이가 반환됩니다.
+
+#### 쿼리결과
+
+| n.name | n.age |
+| :--- | :--- |
+| `"Tobias"` | `25` |
+| **1 row** ||
+
 ### 속성 존재 확인 {#chapter337_2_6}
+
+특정 속성이 노드나 관계에 있는지 확인하려면 `exists()` 함수를 사용하면 됩니다.
+
+#### 쿼리
+
+```cypher
+MATCH (n)
+WHERE exists(n.belt)
+RETURN n.name, n.belt
+```
+
+유일하게 `belt` 속성을 가지고 있는 **Andres** 노드만 이름과 벨트 정보가 반환됩니다.
+
+> `has()` 함수는 `exists()` 함수로 대체되었습니다.
+
+#### 쿼리결과
+
+| n.name | n.belt |
+| :--- | :--- |
+| `"Andres"` | `"white"` |
+| **1 row** ||
 
 ## 3.3.7.3 문자열 매칭 {#chapter337_3}
 
