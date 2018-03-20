@@ -177,13 +177,91 @@ RETURN n.name, n.belt
 
 ## 3.3.7.3 문자열 매칭 {#chapter337_3}
 
+문자열의 시작과 끝은 `STARTS WITH`와 `ENDS WITH`로 매칭할 수 있습니다. 위치에 상관없는 포함여부는 `CONTAINS`를 사용합니다. 각각의 매칭은 대소문자를 구분합니다.
+
 ### 문자열 시작부터 매칭 {#chapter337_3_1}
+
+`STARTS WITH` 연산자는 대소문자를 구분하는 문자열 시작부분 매칭방법입니다.
+
+#### 쿼리
+
+```cypher
+MATCH (n)
+WHERE n.name STARTS WITH 'Pet'
+RETURN n.name, n.age
+```
+
+**Pet**로 이름이 시작하는 **Peter** 노드의 이름과 나이가 반환됩니다.
+
+#### 쿼리결과
+
+| n.name | n.age |
+| :--- | :--- |
+| `"Peter"` | `35` |
+| **1 row** ||
 
 ### 문자열 끝부터 매칭 {#chapter337_3_2}
 
+`ENDS WITH` 연산자는 대소문자를 구분하는 문자열 끝부분 매칭방법입니다.
+
+#### 쿼리
+
+```cypher
+MATCH (n)
+WHERE n.name ENDS WITH 'ter'
+RETURN n.name, n.age
+```
+
+**ter**로 이름이 끝나는 **Peter** 노드의 이름과 나이가 반환됩니다.
+
+#### 쿼리결과
+
+| n.name | n.age |
+| :--- | :--- |
+| `"Peter"` | `35` |
+| **1 row** ||
+
 ### 문자열 부분 매칭 {#chapter337_3_3}
 
+`CONTAINS` 연산자는 대소문자를 구분하는 위치에 상관없는 문자열 매칭방법 입니다.
+
+#### 쿼리
+
+```cypher
+MATCH (n)
+WHERE n.name CONTAINS 'ete'
+RETURN n.name, n.age
+```
+
+**ete**가 이름에 포함되는 **Peter** 노드의 이름과 나이가 반환됩니다.
+
+#### 쿼리결과
+
+| n.name | n.age |
+| :--- | :--- |
+| `"Peter"` | `35` |
+| **1 row** ||
+
 ### 문자열 매칭 제외 {#chapter337_3_4}
+
+주어진 문자열 매칭을 결과에서 제외하려면 `NOT` 키워드를 사용하면 됩니다.
+
+#### 쿼리
+
+```cypher
+MATCH (n)
+WHERE NOT n.name ENDS WITH 's'
+RETURN n.name, n.age
+```
+
+**s**가 이름에 포함되지 않는 **Peter** 노드의 이름과 나이가 반환됩니다.
+
+#### 쿼리결과
+
+| n.name | n.age |
+| :--- | :--- |
+| `"Peter"` | `35` |
+| **1 row** ||
 
 ## 3.3.7.4 정규표현식 {#chapter337_4}
 
