@@ -16,6 +16,9 @@
   * [문자열 부분 매칭](#chapter337_3_3)
   * [문자열 매칭 제외](#chapter337_3_4)
 * [정규표현식](#chapter337_4)
+  * [정규표현식 사용하기](#chapter337_4_1)
+  * [정규표현식에 특수문자 사용](#chapter337_4_2)
+  * [대소문자 구분없는 정규표현식](#chapter337_4_3)
 * [`WHERE`안에 경로 패턴사용](#chapter337_5)
   * [패턴으로 필터](#chapter337_5_1)
   * [`NOT`을 사용한 패턴으로 필터](#chapter337_5_2)
@@ -264,6 +267,33 @@ RETURN n.name, n.age
 | **1 row** ||
 
 ## 3.3.7.4 정규표현식 {#chapter337_4}
+
+Cypher에는 정규표현식을 사용한 필터링을 지원합니다. 정규표현식은 [the java regular expressions](https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html)에 따릅니다. 대소문자구분안함 `(?i)`, 다중행 `(?m)`, 마침점 `(?s)`와 같은 문자열 매칭에 필요한 플래그 또한 지원합니다. 플래그는 정규표현식의 가장 앞에 사용됩니다. 예로들면, `MATCH (n) WHERE n.name =~ '(?i)Lon.*' RETURN n`은 **London**과 **LonDoN** 이름을 가진 노드 모두 반환됩니다.
+
+### 정규표현식 사용하기 {#chapter337_4_1}
+
+`=~ 'regexp'` 문법을 사용하여 정규표현식으로 매칭할 수 있습니다.
+
+#### 쿼리
+
+```cypher
+MATCH (n)
+WHERE n.name =~ 'Tob.*'
+RETURN n.name, n.age
+```
+
+**Tob**으로 이름이 시작하기 때문에 **Tobias** 노드의 이름과 나이가 반환됩니다.
+
+#### 쿼리결과
+
+| n.name | n.age |
+| :--- | :--- |
+| `"Tobias"` | `25` |
+| **1 row** |
+
+### 정규표현식에 특수문자 사용 {#chapter337_4_2}
+
+### 대소문자 구분없는 정규표현식 {#chapter337_4_3}
 
 ## 3.3.7.5 `WHERE`안에 경로 패턴사용 {#chapter337_5}
 
