@@ -356,6 +356,25 @@ RETURN n.name, n.age
 
 ### `null`로 필터링 {#chapter337_7_3}
 
+값이나 속성이 `null`인지 테스트가 필요할때가 있습니다. SQL과 유사하게 `IS NULL`을 사용하시면 됩니다. 또한 반대의미인 `IS NOT NULL` 또는 `NOT(IS NULL x)`를 사용할 수 있습니다.
+
+#### 쿼리
+
+```cypher
+MATCH (person)
+WHERE person.name = 'Peter' AND person.belt IS NULL
+RETURN person.name, person.age, person.belt
+```
+
+이름이 **Peter**이면서, belt 속성이 없는 노드의 이름, 나이가 반환됩니다.
+
+#### 쿼리결과
+
+| person.name | person.age | person.belt |
+| :--- | :--- | :--- |
+| `"Peter"` | `35` | `<null>` |
+| **1 row** |||
+
 ## 3.3.7.8 범위 사용 {#chapter337_8}
 
 ### 단순 범위 {#chapter337_8_1}
