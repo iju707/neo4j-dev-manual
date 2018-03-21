@@ -357,4 +357,43 @@ RETURN n.name, n.age
 
 ### 단순 범위 {#chapter337_8_1}
 
+요소가 특정 범위에 있는지 확인하기 위해서는, `<`, `<=`, `>=`, `>` 연산자를 사용하시면 됩니다.
+
+#### 쿼리
+
+```cypher
+MATCH (a)
+WHERE a.name >= 'Peter'
+RETURN a.name, a.age
+```
+
+**Peter** 보다 문자열적으로 크거나 같은 속성을 가진 노드의 이름과 나이가 반환됩니다.
+
+#### 쿼리결과
+
+| a.name | a.age |
+| :--- | :--- |
+| `"Tobias"` | `25` |
+| `"Peter"` | `35` |
+| **2 rows** ||
+
 ### 복합 범위 {#chapter337_8_2}
+
+서로다른 범위 조건을 동시에 여러개 사용할 수 있습니다.
+
+#### 쿼리
+
+```cypher
+MATCH (a)
+WHERE a.name > 'Andres' AND a.name < 'Tobias'
+RETURN a.name, a.age
+```
+
+문자열적으로 **Andres**와 **Tobias** 사이에 있는 노드의 이름과 나이가 반환됩니다.
+
+#### 쿼리결과
+
+| a.name | a.age |
+| :--- | :--- |
+| `"Peter"` | `35` |
+| **1 row** ||
