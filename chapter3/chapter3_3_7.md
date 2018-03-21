@@ -29,6 +29,7 @@
 * [없는 속성과 값](#chapter337_7)
   * [속성이 없을 때 `false`로 하기](#chapter337_7_1)
   * [속성이 없을 때 `true`로 하기](#chapter337_7_2)
+  * [`null`로 필터링](#chapter337_7_3)
 * [범위 사용](#chapter337_8)
   * [단순 범위](#chapter337_8_1)
   * [복합 범위](#chapter337_8_2)
@@ -351,7 +352,9 @@ RETURN n.name, n.age
 
 ### 속성이 없을 때 `false`로 하기 {#chapter337_7_1}
 
-###속성이 없을 때 `true`로 하기 {#chapter337_7_2}
+### 속성이 없을 때 `true`로 하기 {#chapter337_7_2}
+
+### `null`로 필터링 {#chapter337_7_3}
 
 ## 3.3.7.8 범위 사용 {#chapter337_8}
 
