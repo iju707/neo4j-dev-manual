@@ -293,7 +293,45 @@ RETURN n.name, n.age
 
 ### 정규표현식에 특수문자 사용 {#chapter337_4_2}
 
+`.`이나 `*`와 같은 문자는 정규표현식에 특수한 의미를 가지고 있습니다. 이것을 의미없이 문자 자체로만 사용할 경우 Escaping 처리를 해야합니다.
+
+#### 쿼리
+
+```cypher
+MATCH (n)
+WHERE n.email =~ '.*\\.com'
+RETURN n.name, n.age, n.email
+```
+
+이메일의 끝이 **.com**으로 끝나기 때문에 **Peter**의 이름, 나이, 이메일 정보가 반환됩니다.
+
+#### 쿼리결과
+
+| n.name | n.age | n.email |
+| :--- | :--- | :--- |
+| `"Peter"` | `35` | `"peter_n@example.com"` |
+| **1 row** |||
+
 ### 대소문자 구분없는 정규표현식 {#chapter337_4_3}
+
+정규표현식에 `(?i)`를 앞에 붙이면, 대소문자구분없이 처리하게 됩니다.
+
+#### 쿼리
+
+```cypher
+MATCH (n)
+WHERE n.name =~ '(?i)ANDR.*'
+RETURN n.name, n.age
+```
+
+대소문자에 관계없이 **ANDR**로 이름이 시작하는 **Andres**의 이름과 나이가 반환됩니다.
+
+#### 쿼리결과
+
+| n.name | n.age |
+| :--- | :--- |
+| `"Andres"` | `36` |
+| **1 row** ||
 
 ## 3.3.7.5 `WHERE`안에 경로 패턴사용 {#chapter337_5}
 
